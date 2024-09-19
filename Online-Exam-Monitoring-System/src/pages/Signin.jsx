@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import './style.css'; // Make sure your CSS is imported
+import '../styles/style.css'; 
+import login_illustration from '../assets/login_illustration.svg'
+// Make sure your CSS is imported
 //import React, {usestate} from 'react';
 //const [state,setState]=usestate(initialValue);
 
@@ -57,7 +59,7 @@ function SignIn() {
       <div className="row login_left">
         <img
           className="login_left_image"
-          src="demo1/src/login_illustration.svg"
+          src={login_illustration}
           alt="Login Illustration"
         />
       </div>
