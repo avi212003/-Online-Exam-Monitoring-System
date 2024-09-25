@@ -1,11 +1,9 @@
-import React from 'react';
-import './style.css'; // Assuming your styles are here
-import registerIllustration from '../static/register_illustration.png';
-import studentImage from '../static/student_image.png';
-import dashboardIllustration from '../static/dashboard_illustration.png';
+import './Dashboard.css';
+import registerIllustration from '../../assets/register_illustration.png';
+import studentImage from '../../assets/student_image.png';
+import dashboardIllustration from '../../assets/dashboard_illustration.png';
 
-const Dashboard = () => {
-  const name = "John Doe"; // You can replace this with dynamic data from props or state
+const Dashboard = ({ name }) => {
 
   return (
     <div className="container">
