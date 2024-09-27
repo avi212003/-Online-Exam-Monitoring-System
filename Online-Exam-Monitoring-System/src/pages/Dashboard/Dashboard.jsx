@@ -22,7 +22,7 @@ const Dashboard = ({ name }) => {
         <div className="dash_head">
           <div className="dash_header">Practice Tests</div>
           <button className="log_out">
-            <a href="/login">Log Out</a>
+            <a className='log_out_link' href="/login">Log Out</a>
           </button>
         </div>
         <div className="dash_body">
