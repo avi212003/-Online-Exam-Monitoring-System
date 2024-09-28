@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import '../styles/Auth.css'; 
-import registerIllustration from '../assets/register_illustration.png'
+import './register.css'
+import registerIllustration from '../../assets/register_illustration.png'
 
-function App() {
+function Register() {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -92,4 +92,4 @@ function App() {
   );
 }
 
-export default App;
+export default Register;
