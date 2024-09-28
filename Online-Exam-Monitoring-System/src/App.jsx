@@ -4,8 +4,8 @@ import Register from './pages/Register/Register';
 function App() {
   return (
     <div className="App">
-    <Register /> {/* Render the Register component */}
-  </div>
+      <Register /> {/* Render the Register component */}
+    </div>
   )
 }
 

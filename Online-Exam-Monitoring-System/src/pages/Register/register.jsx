@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './register.css'
-import registerIllustration from '../../assets/register_illustration.png'
+import register from '../../assets/register.png'
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -25,15 +25,7 @@ function Register() {
 
   return (
     <div className="container">
-      <div className="row register_left">
-        <img className="register_left_image" src={registerIllustration} alt="Register Illustration" />
-        <div className="text_header">A-EYE</div>
-        <div className="text">
-          A-EYE is an AI-based proctoring system. It is capable of recognizing candidates by their name,
-          detecting their mobile phones and head position, and raises an alert message if any malpractice is observed.
-        </div>
-      </div>
-      <div className="row register_right">
+      <div className="register_right">
         <form onSubmit={handleSubmit} className="register_form">
           <div className="header">Register</div>
           <input
@@ -84,9 +76,10 @@ function Register() {
             value="Register"
           /><br />
           <div className="register_link">
-            Already have an Account? <a href="/login" className="black">Sign In</a>
+            Already have an account? <a href="/login" className="sign_in_instead">Sign In</a>
           </div>
         </form>
+        <img className="register_image" src={register} alt="Register Illustration" />
       </div>
     </div>
   );
