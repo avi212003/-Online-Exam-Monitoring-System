@@ -79,7 +79,6 @@ function Register() {
                 type="submit"
                 value="Register"
               />
-                {/* <p className='register_text'>Register1</p> */}
               <br />
               <div className="register_link">
                 Already have an account? <a href="/login" className="sign_in_instead">Sign In</a>
