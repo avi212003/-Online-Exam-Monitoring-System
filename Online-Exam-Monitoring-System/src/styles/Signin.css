@@ -1,203 +1,100 @@
 /* General styles for the container */
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f2f2f2; /* Light gray background */
-  }
-  
-  /* Row styles to position the image and form side by side */
-  .row {
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Left side image */
-  .login_left {
-    flex: 1; /* Take up one part of the flex container */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 20px; /* Space between image and form */
-  }
-  
-  .login_left_image {
-    width: 100%; /* Full width */
-    max-width: 400px; /* Max width for the image */
-  }
-  
-  /* Styling for the form */
-  .login_form {
-    flex: 1; /* Take up one part of the flex container */
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Header styles */
-  .header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333; /* Darker text color */
-  }
-  
-  /* Input field styles */
-  .input_field {
-    width: 100%; /* Full width */
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border 0.3s ease;
-  }
-  
-  .input_field:focus {
-    border-color: #007bff; /* Change border color on focus */
-    outline: none;
-  }
-  
-  /* Submit button styles */
-  .submit_button {
-    width: 100%; /* Full width */
-    padding: 10px;
-    background-color: #007bff; /* Blue background */
-    color: white; /* White text */
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submit_button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-  }
-  
-  /* Message display styles */
-  h5 {
-    text-align: center;
-    color: #28a745; /* Green color for success messages */
-  }
-  
-  /* Register link styles */
-  .register_link {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
-  }
-  
-  .register_link a {
-    color: #007bff; /* Blue color for link */
-    text-decoration: none;
-  }
-  
-  .register_link a:hover {
-    text-decoration: underline; /* Underline on hover */
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .row {
-      flex-direction: column; /* Stack on small screens */
-    }
-  
-    .login_left {
-      padding: 0; /* Remove padding for smaller screens */
-      margin-bottom: 20px; /* Space below the image */
-    }
-  }
-/* General styles for the container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  background-color: rgb(187, 239, 251); /* Light gray background */
+}
+
+/* Container for Login */
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f2f2f2; /* Light gray background */
-  }
-  
-  /* Row styles to position the image and form side by side */
-  .row {
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Left side image */
-  .login_left {
-    flex: 1; /* Take up one part of the flex container */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 20px; /* Space between image and form */
-  }
-  
-  .login_left_image {
-    width: 100%; /* Full width */
-    max-width: 400px; /* Max width for the image */
-  }
-  
-  /* Styling for the form */
-  .login_form {
-    flex: 1; /* Take up one part of the flex container */
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Header styles */
-  .header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333; /* Darker text color */
-  }
-  
-  /* Input field styles */
-  .input_field {
-    width: 100%; /* Full width */
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border 0.3s ease;
-  }
-  
-  .input_field:focus {
-    border-color: #007bff; /* Change border color on focus */
-    outline: none;
-  }
-  
-  /* Submit button styles */
-  .submit_button {
-    width: 100%; /* Full width */
-    padding: 10px;
-    background-color: #007bff; /* Blue background */
-    color: white; /* White text */
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submit_button:hover {
+  display: flex;
+  background-color: #a3e1f3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 700px;
+  overflow: hidden;
+}
+
+/* Styling for the form */
+.login_form {
+  flex: 1; /* Take up one part of the flex container */
+  border-radius: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 100px;
+  padding-top: 100px;
+}
+
+/* Header styles */
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333; /* Darker text color */
+  padding-left: 100px;
+  padding-right: 50px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+/* Left side image */
+.login_left {
+  flex: 1; /* Take up one part of the flex container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 0px; /* Space between image and form */
+}
+
+.login_left_image {
+  width: 100%; /* Full width */
+  max-width: 350px; /* Max width for the image */
+}
+
+h2 {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 30px;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+  outline: none;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #333;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #007bff;
+}
+
+/* Submit button styles */
+.submit_button {
+  width: 100%; /* Full width */
+  padding: 10px;
+  margin: 15px 30px;
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit_button:hover {
     background-color: #0056b3; /* Darker blue on hover */
   }
   
-  /* Message display styles */
-  h5 {
-    text-align: center;
-    color: #28a745; /* Green color for success messages */
-  }
-  
-  /* Register link styles */
+/* Register link styles */
   .register_link {
     text-align: center;
     margin-top: 15px;
@@ -213,15 +110,19 @@
     text-decoration: underline; /* Underline on hover */
   }
   
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .row {
-      flex-direction: column; /* Stack on small screens */
-    }
-  
-    .login_left {
-      padding: 0; /* Remove padding for smaller screens */
-      margin-bottom: 20px; /* Space below the image */
-    }
+/* Mobile View */
+@media screen and (max-width: 768px) {
+  .container {
+      flex-direction: column;
+      width: 90%;
   }
-    
+
+  .right-section {
+      width: 100%;
+      height: 150px;
+  }
+
+  .left-section {
+      width: 100%;
+  }
+}
