@@ -7,7 +7,15 @@ const Dashboard = ({ name }) => {
     <div className="container">
       <header className='header'>
         <div className="header-content">
-          <button className='profile-button'>Profile</button>
+          <div className='app-title'>
+              <img className='logo' src={studentImage} alt="Student" />
+              <h2>Online Monitoring System</h2>
+          </div>
+          <div className='welcome-section'>
+              <img className='student-image' src={studentImage} alt="Student" />
+              <h2>Welcome, {name}!</h2>
+          </div>
+            {/* <button className='profile-button'>Profile</button> */}
         </div>
       </header>
       <div className="main">
@@ -20,10 +28,10 @@ const Dashboard = ({ name }) => {
           </ul>
         </aside>
         <section className='right_side'>
-          <div className='welcome-section'>
+          {/* <div className='welcome-section'>
             <img className='student-image' src={studentImage} alt="Student" />
             <h2>Welcome, {name}!</h2>
-          </div>
+          </div> */}
           
           <div className='current_exam'>
             <h3>Current Exam</h3>

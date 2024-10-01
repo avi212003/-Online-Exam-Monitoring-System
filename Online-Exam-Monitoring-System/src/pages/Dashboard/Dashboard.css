@@ -33,7 +33,16 @@
 
   .logo {
     height: 50px;
-    margin-right: auto; /* Push the profile button to the right */
+    /* height: 100px; */
+    margin-right: 20px; /* Push the profile button to the right */
+    padding: 0;
+  }
+  .app-title{
+    font-size: 24px;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .profile-button {
@@ -61,6 +70,7 @@
   
   /* Sidebar Styling */
   .sidebar {
+    /* margin-top: 10px; */
     width: 220px;
     /* background-color: #2e3b4e; */
     /* background-color: #131122; */
@@ -74,7 +84,7 @@
   
   .sidebar ul {
     list-style: none;
-    padding: 20px 0;
+    padding: 0;
   }
   
   .sidebar li {
@@ -97,26 +107,27 @@
   /* Right Side Styling */
   .right_side {
     flex: 1;
-    padding: 20px;
+    padding: 20px 20px 20px 20px;
   }
   
   /* Welcome Section */
   .welcome-section {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    /* margin-top: 10px; */
+    /* margin-bottom: 10px; */
   }
   
   .student-image {
-    width: 80px;
-    height: 80px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     margin-right: 20px;
   }
   
   .welcome-section h2 {
-    font-size: 24px;
-    color: #333;
+    font-size: 15px;
+    color: white;
   }
   
   /* Current Exam Section */
@@ -162,7 +173,7 @@
   /* Past Exam Scores */
   .past_exam_scores {
     flex: 1;
-    background-color: #fff;
+    /* background-color: #000000; */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -183,6 +194,7 @@
     text-align: left;
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    color: #000;
   }
   
   .past_exam_scores th {
