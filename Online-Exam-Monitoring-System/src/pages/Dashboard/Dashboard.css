@@ -1,133 +1,262 @@
-/* Global Styles */
-* { 
-  padding: 0; 
-  margin: 0; 
-}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .container {
+    font-family: 'Arial, sans-serif';
+    background-color: #f4f6f8;
+    min-height: 100vh;
+  }
+  
+  /* Header Styling */
+  .header {
+    width: 100%;
+    /* background-color: #2e3b4e; */
+    /* background-color: #131122; */
+    background-color: #1a1d25;
+    padding: 10px 20px;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
 
-html, body {
-  min-height: 100% !important;
-  height: 100%;
-  font-family: sans-serif;
-  box-sizing: border-box !important;
-  overflow: hidden;
-  background-color: white;
-}
+  .logo {
+    height: 50px;
+    margin-right: auto; /* Push the profile button to the right */
+  }
+  
+  .profile-button {
+    /* background-color: #ff9800; */
+    background-color: #4169E1;
+    border: none;
+    padding: 10px 15px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-button:hover {
+    background-color: #e68900;
+  }
+  
+  /* Main Layout */
+  .main {
+    display: flex;
+    width: 100%;
+    margin-top: 70px;
+  }
+  
+  /* Sidebar Styling */
+  .sidebar {
+    width: 220px;
+    /* background-color: #2e3b4e; */
+    /* background-color: #131122; */
+    background-color: #1a1d25;
 
-a {
-  text-decoration: none;
-  color: #fff;
+    color: #fff;
+    min-height: calc(100vh - 70px);
+    position: sticky;
+    top: 70px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 20px 0;
+  }
+  
+  .sidebar li {
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .sidebar li:hover,
+  .sidebar li.active {
+    /* background-color: #1a252f; */
+    background-color: #34495e;
+  }
+  
+  .sidebar li.active {
+    /* background-color: #ff9800; */
+    background-color: #4169E1;
+  }
+  
+  /* Right Side Styling */
+  .right_side {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  /* Welcome Section */
+  .welcome-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .student-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .welcome-section h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Current Exam Section */
+  .current_exam {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .current_exam h3 {
+    margin-bottom: 15px;
+    color: #2e3b4e;
+  }
+  
+  .exam-details p {
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .start-exam-button {
+    background-color: #4caf50;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .start-exam-button:hover {
+    background-color: #43a047;
+  }
+  
+  /* Past and Upcoming Exams */
+  .past_upcoming_exams {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  /* Past Exam Scores */
+  .past_exam_scores {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .past_exam_scores h3 {
+    margin-bottom: 15px;
+    color: #2e3b4e;
+  }
+  
+  .past_exam_scores table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .past_exam_scores th,
+  .past_exam_scores td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .past_exam_scores th {
+    background-color: #f0f0f0;
+  }
+  
+  .past_exam_scores tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Upcoming Exams */
+  .upcoming_exams {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .upcoming_exams h3 {
+    margin-bottom: 15px;
+    color: #2e3b4e;
+  }
+  
+  .upcoming_exams ul {
+    list-style: none;
+  }
+  
+  .upcoming_exams li {
+    background-color: #e3f2fd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .upcoming_exams li p {
+    margin: 5px 0;
+    color: #333;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .main {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      width: 100%;
+      min-height: auto;
+      position: relative;
+      top: 0;
+    }
+  
+    .past_upcoming_exams {
+      flex-direction: column;
+    }
+  
+    .header-content {
+      justify-content: center;
+    }
+  
+    /* Optional: Adjust padding for smaller screens */
+    .right_side {
+      padding: 15px;
+    }
+  
+    .welcome-section h2 {
+      font-size: 20px;
+    }
+  
+    .current_exam,
+    .past_exam_scores,
+    .upcoming_exams {
+      padding: 15px;
+    }
 }
-
-/* Container */
-.container {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-
-/* Dashboard Rows */
-.dash_row {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Left Section */
-.dashboard_left {
-  width: 50%;
-  height: 100vh;
-  background-color: #8EC0FA;
-}
-
-.dash_top_left_img {
-  width: 5vw;
-  /* position: absolute; */
-  top: 2.5vw;
-  left: 2.5vw;
-  margin: 1rem 0 0 1rem;
-}
-
-.student_info {
-  height: 60%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.student_image {
-  width: 30%;
-  margin-bottom: 1.5em;
-}
-
-.student_name {
-  font-size: 1.5em;
-  color: #000000;
-}
-
-.dash_image_div {
-  height: 40%;
-  width: 100%;
-}
-
-.dash_image {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* Right Section */
-.dashboard_right {
-  width: 50%;
-  height: 100%;
-}
-
-.dash_head {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 2rem 0;
-}
-
-.dash_header {
-  font-size: 2em;
-  color: #9EA1A4;
-  font-weight: bold;
-  padding: 0 1rem;
-}
-
-.log_out {
-  font-size: 1em;
-  color: white;
-  cursor: pointer;
-  background-color: #0076FF;
-  border: none;
-  /* margin-left: auto; */
-  margin-right: 1rem;
-  padding: 0.8em;
-}
-
-.log_out_link {
-  color: white;
-}
-
-.dash_body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.take_test_button {
-  font-size: 1.5em;
-  color: #fff;
-  cursor: pointer;
-  background-color: #0076FF;
-  border: none;
-  padding: 0.8em;
-}
+  

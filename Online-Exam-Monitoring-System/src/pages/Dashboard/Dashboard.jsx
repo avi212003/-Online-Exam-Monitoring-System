@@ -1,35 +1,89 @@
+import React from 'react';
 import './Dashboard.css';
-import registerIllustration from '../../assets/register_illustration.png';
 import studentImage from '../../assets/student_image.png';
-import dashboardIllustration from '../../assets/dashboard_illustration.png';
 
 const Dashboard = ({ name }) => {
-
   return (
     <div className="container">
-      <div className="dash_row dashboard_left">
-        <img className="dash_top_left_img" src={registerIllustration} alt="Register Illustration" />
-        <div className="student_info">
-          <img className="student_image" src={studentImage} alt="Student" />
-          <div className="student_name">{name}</div>
+      <header className='header'>
+        <div className="header-content">
+          <button className='profile-button'>Profile</button>
         </div>
-        <div className="dash_image_div">
-          <img className="dash_image" src={dashboardIllustration} alt="Dashboard Illustration" />
-        </div>
-      </div>
-
-      <div className="dash_row dashboard_right">
-        <div className="dash_head">
-          <div className="dash_header">Practice Tests</div>
-          <button className="log_out">
-            <a className='log_out_link' href="/login">Log Out</a>
-          </button>
-        </div>
-        <div className="dash_body">
-          <form action="/student_profile" method="post">
-            <input className="take_test_button" type="submit" value="Take a demo test" />
-          </form>
-        </div>
+      </header>
+      <div className="main">
+        <aside className='sidebar'>
+          <ul>
+            <li className="active">Home</li>
+            <li>My Profile</li>
+            <li>Contact Us</li>
+            <li>Logout</li>
+          </ul>
+        </aside>
+        <section className='right_side'>
+          <div className='welcome-section'>
+            <img className='student-image' src={studentImage} alt="Student" />
+            <h2>Welcome, {name}!</h2>
+          </div>
+          
+          <div className='current_exam'>
+            <h3>Current Exam</h3>
+            <div className='exam-details'>
+              <p><strong>Subject:</strong> History</p>
+              <p><strong>Date:</strong> 2024-10-15</p>
+              <p><strong>Time:</strong> 10:00 AM - 12:00 PM</p>
+              <button className='start-exam-button'>Start Exam</button>
+            </div>
+          </div>
+          
+          <div className='past_upcoming_exams'>
+            <div className='past_exam_scores'>
+              <h3>Past Exam Scores</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Subject</th>
+                    <th>Score</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Mathematics</td>
+                    <td>85%</td>
+                    <td>2024-09-10</td>
+                  </tr>
+                  <tr>
+                    <td>Physics</td>
+                    <td>90%</td>
+                    <td>2024-08-20</td>
+                  </tr>
+                  <tr>
+                    <td>Chemistry</td>
+                    <td>78%</td>
+                    <td>2024-07-15</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className='upcoming_exams'>
+              <h3>Upcoming Exams</h3>
+              <ul>
+                <li>
+                  <p><strong>Biology</strong></p>
+                  <p>Date: 2024-11-05</p>
+                </li>
+                <li>
+                  <p><strong>Spanish</strong></p>
+                  <p>Date: 2024-12-01</p>
+                </li>
+                <li>
+                  <p><strong>French</strong></p>
+                  <p>Date: 2024-12-15</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
