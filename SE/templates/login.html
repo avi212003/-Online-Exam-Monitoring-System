@@ -1,29 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="static/register_illustration.jpeg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
     <title>Sign In</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <form action="/login" , method="post" class="login_form">
-                <div class="header">Sign In</div>
-                <input class="input_field" type="text" id="Username" name="Username" placeholder="Username" required><br>
-                <input class="input_field" type="password" id="password" name="psw" placeholder="Password" required><br>
-                <input class="submit_button" type="submit" value="Login"><br><br>
-                <h5>{{msg}}</h5>
-            </form>
-            <div class="register_link">New to Exam Guardian? <a href="/" class="black">Register</a></div>
-        </div>
-        <div class="row login_left">
-            <img class="login_left_image" src="static/login_illustration.png" />
+        <div class="register_right">
+            <div class="content">
+                <!-- Replace 'assets/SignIn.png' with the correct path to your image -->
+                <img class="register_image" src="{{ url_for('static', filename='assets/SignIn.png') }}" alt="Register Illustration">
+                <div class="card">
+                    <div class="header">Sign In</div>
+                    <form action="/login" , method="post" class="register_form">
+                        <input class="input_field" type="text" id="Username" name="Username" placeholder="Username" required><br>
+                        <input class="input_field" type="password" id="password" name="psw" placeholder="Password" required><br>
+                        <input class="submit_button" type="submit" value="Login"><br><br>
+                        <h5>{{msg}}</h5>
+                    </form>
+                    <div class="register_link">
+                        Don't have an account? <a href="/" class="sign_up_instead">Register</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- <script type="module" src="/main.js"></script> -->
+    <!-- Optional JavaScript for form handling -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('register_form');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Retrieve form data
+                const formData = {
+                    username: document.getElementById('username').value,
+                    password: document.getElementById('password').value
+                };
+
+                // For demonstration, log the form data to the console
+                console.log(formData);
+
+                // TODO: Add your form submission logic here (e.g., send data to a server)
+            });
+        });
+    </script>
 </body>
 </html>

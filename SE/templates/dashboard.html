@@ -1,34 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='register_illustration.jpeg') }}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
     <title>Dashboard</title>
+    <!-- Link to the Dashboard CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
 </head>
 <body>
     <div class="container">
-        <div class="dash_row dashboard_left">
-            <div class="student_info">
-                <img class="student_image" src="{{ url_for('static', filename='student_image.png') }}" />
-                <div class="student_name">{{name}}</div>
+        <header class="header">
+            <div class="header-content">
+                <div class="app-title">
+                    <!-- Replace 'assets/student_image.png' with the correct path to your logo if different -->
+                    <img class="logo" src="{{ url_for('static', filename='assets/student_image.png') }}" alt="Student Logo">
+                    <h2>Online Monitoring System</h2>
+                </div>
+                <div class="welcome-section">
+                    <img class="student-image" src="{{ url_for('static', filename='assets/student_image.png') }}" alt="Student">
+                    <h2 id="welcome-message">Welcome, {{name}}!</h2>
+                </div>
+                <!-- Optional: Profile Button (Uncomment if needed)
+                <button class="profile-button">Profile</button>
+                -->
             </div>
-            <div class="dash_image_div">
-                <img class="dash_image" src="{{ url_for('static', filename='dashboard_illustration.png') }}" />
-            </div>
-        </div>
-        <div class="dash_row dashboard_right">
-            <div class="dash_head">
-                <div class="dash_header">Practice Tests</div>
-                <button class="log_out"><a href="{{ url_for('login') }}">Log Out</a></button>
-            </div>
-            <div class="dash_body">
-                <form action="{{ url_for('student_profile') }}" method="post">
-                    <input class="take_test_button" type="submit" value="Take a demo test"><br><br>
-                </form>
-            </div>
+        </header>
+        <div class="main">
+            <aside class="sidebar">
+                <ul>
+                    <li class="active">Home</li>
+                    <li>My Profile</li>
+                    <li>Contact Us</li>
+                    <li><a href="/login" id="logout-link">Logout</a></li>
+                </ul>
+            </aside>
+            <section class="right_side">
+                <div class="current_exam">
+                    <h3>Current Exam</h3>
+                    <div class="exam-details">
+                        <p><strong>Subject:</strong> History</p>
+                        <p><strong>Date:</strong> 2024-10-15</p>
+                        <p><strong>Time:</strong> 10:00 AM - 12:00 PM</p>
+                        <!-- <button class="start-exam-button">Start Exam</button> -->
+                        <form action="{{ url_for('student_profile') }}" method="post">
+                            <input class="take_test_button" type="submit" value="Take a demo test"><br><br>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="past_upcoming_exams">
+                    <div class="past_exam_scores">
+                        <h3>Past Exam Scores</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Score</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mathematics</td>
+                                    <td>85%</td>
+                                    <td>2024-09-10</td>
+                                </tr>
+                                <tr>
+                                    <td>Physics</td>
+                                    <td>90%</td>
+                                    <td>2024-08-20</td>
+                                </tr>
+                                <tr>
+                                    <td>Chemistry</td>
+                                    <td>78%</td>
+                                    <td>2024-07-15</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="upcoming_exams">
+                        <h3>Upcoming Exams</h3>
+                        <ul>
+                            <li>
+                                <p><strong>Biology</strong></p>
+                                <p>Date: 2024-11-05</p>
+                            </li>
+                            <li>
+                                <p><strong>Spanish</strong></p>
+                                <p>Date: 2024-12-01</p>
+                            </li>
+                            <li>
+                                <p><strong>French</strong></p>
+                                <p>Date: 2024-12-15</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
+
+    <!-- JavaScript for Dashboard functionality -->
+    <script src="js/dashboard.js"></script>
 </body>
 </html>
