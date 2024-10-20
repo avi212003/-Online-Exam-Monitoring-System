@@ -1,0 +1,77 @@
+/* frontend/src/components/testpage.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.dash_row {
+    display: flex;
+    flex: 1;
+}
+
+.test_left, .test_right {
+    flex: 1;
+    padding: 20px;
+}
+
+.camera_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.video_image {
+    width: 100%;
+    max-width: 600px;
+    border: 2px solid #000;
+}
+
+.test_bottom_div {
+    margin-top: 20px;
+}
+
+.dash_head {
+    margin-bottom: 20px;
+}
+
+.dash_header {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.dash_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.questions {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.questions div {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.questions label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.test_submit_button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.test_submit_button a {
+    text-decoration: none;
+    color: inherit;
+}
