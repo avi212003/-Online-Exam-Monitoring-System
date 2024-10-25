@@ -1,6 +1,8 @@
 import React from 'react';
 import './Dashboard.css';
 import studentImage from '../../assets/student_image.png';
+import { FaHome, FaUser, FaEnvelope, FaSignOutAlt } from 'react-icons/fa';
+import PastExamScores from './Scorechart'; // Adjust the path as necessary
 
 const Dashboard = ({ name }) => {
   return (
@@ -8,7 +10,6 @@ const Dashboard = ({ name }) => {
       <header className='header'>
         <div className="header-content">
           <div className='app-title'>
-              <img className='logo' src={studentImage} alt="Student" />
               <h2>Online Monitoring System</h2>
           </div>
           <div className='welcome-section'>
@@ -21,29 +22,55 @@ const Dashboard = ({ name }) => {
       <div className="main">
         <aside className='sidebar'>
           <ul>
-            <li className="active">Home</li>
-            <li>My Profile</li>
-            <li>Contact Us</li>
-            <li>Logout</li>
+            <button className="home-button">
+              <FaHome size={20} style={{ marginRight: '8px' }} />
+              Home
+            </button>
+            <button className = "myProfile-button">
+              <FaUser style={{ marginRight: '8px' }} />
+              My Profile
+            </button>
+            <button className = "contact-button">
+              <FaEnvelope style={{ marginRight: '8px' }} />
+              Contact Us
+            </button>
+            <button className = "logout-button">
+              <FaSignOutAlt style={{ marginRight: '8px' }} />
+              Logout
+            </button>
           </ul>
         </aside>
         <section className='right_side'>
-          {/* <div className='welcome-section'>
-            <img className='student-image' src={studentImage} alt="Student" />
-            <h2>Welcome, {name}!</h2>
-          </div> */}
-          
+          <div className ='dashboard'>Dashboard</div>
+
           <div className='current_exam'>
-            <h3>Current Exam</h3>
             <div className='exam-details'>
+            <h3>Current Exam</h3>
               <p><strong>Subject:</strong> History</p>
               <p><strong>Date:</strong> 2024-10-15</p>
               <p><strong>Time:</strong> 10:00 AM - 12:00 PM</p>
               <button className='start-exam-button'>Start Exam</button>
             </div>
+            <div className='upcoming_exams'>
+              <h3>Upcoming Exams</h3>
+              <ul>
+                <li>
+                  <p><strong>Software Engineering</strong></p>
+                  <p>Date: 11-05-2024</p>
+                </li>
+                <li>
+                  <p><strong>Discrete Math</strong></p>
+                  <p>Date: 12-01-2024</p>
+                </li>
+                <li>
+                  <p><strong>Operating System</strong></p>
+                  <p>Date: 15-12-2024</p>
+                </li>
+              </ul>
+            </div>
           </div>
-          
-          <div className='past_upcoming_exams'>
+        
+          <div className='scores'>
             <div className='past_exam_scores'>
               <h3>Past Exam Scores</h3>
               <table>
@@ -56,39 +83,26 @@ const Dashboard = ({ name }) => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Mathematics</td>
+                    <td>Discrete Math</td>
                     <td>85%</td>
-                    <td>2024-09-10</td>
+                    <td>09-10-2024</td>
                   </tr>
                   <tr>
-                    <td>Physics</td>
+                    <td>Software Engineering</td>
                     <td>90%</td>
-                    <td>2024-08-20</td>
+                    <td>08-20-2024</td>
                   </tr>
                   <tr>
-                    <td>Chemistry</td>
+                    <td>Operating System</td>
                     <td>78%</td>
-                    <td>2024-07-15</td>
+                    <td>07-15-2024
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <div className='upcoming_exams'>
-              <h3>Upcoming Exams</h3>
-              <ul>
-                <li>
-                  <p><strong>Biology</strong></p>
-                  <p>Date: 2024-11-05</p>
-                </li>
-                <li>
-                  <p><strong>Spanish</strong></p>
-                  <p>Date: 2024-12-01</p>
-                </li>
-                <li>
-                  <p><strong>French</strong></p>
-                  <p>Date: 2024-12-15</p>
-                </li>
-              </ul>
+            <div>
+            <PastExamScores />
             </div>
           </div>
         </section>

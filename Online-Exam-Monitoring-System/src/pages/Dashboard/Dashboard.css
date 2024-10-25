@@ -3,6 +3,23 @@
     padding: 0;
     box-sizing: border-box;
   }
+
+  .home-button, .myProfile-button, .contact-button, .logout-button  {
+    background-color: white;
+    color: deepskyblue;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-button:hover, .myProfile-button:hover, .contact-button:hover, .logout-button:hover {
+    background-color: #34495e;
+    width: 150px;
+  }
   
   .container {
     font-family: 'Arial, sans-serif';
@@ -15,9 +32,9 @@
     width: 100%;
     /* background-color: #2e3b4e; */
     /* background-color: #131122; */
-    background-color: #1a1d25;
+    background-color: white;
     padding: 10px 20px;
-    color: #fff;
+    color: black;
     position: fixed;
     top: 0;
     left: 0;
@@ -28,6 +45,16 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+  }
+  .dashboard{
+    text-align: left;
+    color: deepskyblue;
+    font-weight: bold ;
+    font-size: 30px;
+  }
+
+  .scores{
+    display: flex;
   }
   
 
@@ -71,10 +98,10 @@
   /* Sidebar Styling */
   .sidebar {
     /* margin-top: 10px; */
-    width: 220px;
+    width: 150px;
     /* background-color: #2e3b4e; */
     /* background-color: #131122; */
-    background-color: #1a1d25;
+    background-color: white;
 
     color: #fff;
     min-height: calc(100vh - 70px);
@@ -127,7 +154,7 @@
   
   .welcome-section h2 {
     font-size: 15px;
-    color: white;
+    color: black;
   }
   
   /* Current Exam Section */
@@ -137,16 +164,30 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
   }
   
   .current_exam h3 {
     margin-bottom: 15px;
     color: #2e3b4e;
+    text-align: left;
+  }
+
+  .current_exam div{
+    text-align: left;
+    width: 350px;
   }
   
   .exam-details p {
     margin-bottom: 10px;
     color: #555;
+    text-align: left;
+  }
+
+  .exam-details h3 {
+    color: black;
   }
   
   .start-exam-button {
@@ -173,7 +214,7 @@
   /* Past Exam Scores */
   .past_exam_scores {
     flex: 1;
-    /* background-color: #000000; */
+    background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -216,7 +257,7 @@
   
   .upcoming_exams h3 {
     margin-bottom: 15px;
-    color: #2e3b4e;
+    color: black;
   }
   
   .upcoming_exams ul {
@@ -225,7 +266,7 @@
   
   .upcoming_exams li {
     background-color: #e3f2fd;
-    padding: 15px;
+    padding: 3px;
     border-radius: 5px;
     margin-bottom: 10px;
   }
