@@ -6,6 +6,7 @@ import SignIn from './components/SignIn';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import TestPage from './components/TestPage'; // Import TestPage
+import UserProfile from './components/UserProfile';
 import { AuthProvider, AuthContext } from './contexts/AuthContext';
 import { useContext } from 'react';
 
@@ -22,6 +23,7 @@ const App = () => {
                     <Route path="/" element={<Navigate to="/register" />} /> {/* Default to register */}
                     <Route path="/signin" element={<SignIn />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path='/profile' element={<UserProfile />}></Route>
                     <Route
                         path="/dashboard"
                         element={

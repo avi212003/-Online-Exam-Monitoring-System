@@ -39,7 +39,7 @@ const Dashboard = () => {
                 <aside className="sidebar">
                     <ul>
                         <li className="active">Home</li>
-                        <li>My Profile</li>
+                        <li onClick={() => navigate('/profile')}>My Profile</li>
                         <li>Contact Us</li>
                         <li><button onClick={handleLogout} id="logout-link">Logout</button></li>
                     </ul>
