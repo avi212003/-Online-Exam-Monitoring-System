@@ -74,7 +74,7 @@ const SignIn = () => {
                                 type="submit"
                                 value="Login"
                             /><br /><br />
-                            <h5>{msg}</h5>
+                            <h5 style={{ color: "black" }}>{msg}</h5>
                         </form>
                         <div className="register_link">
                             Don't have an account? <Link to="/register" className="sign_up_instead">Register</Link>

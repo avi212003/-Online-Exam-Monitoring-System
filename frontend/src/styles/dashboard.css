@@ -4,10 +4,11 @@
     box-sizing: border-box;
 }
 
-.container {
+.container_Dashboard {
     font-family: 'Arial, sans-serif';
     background-color: #f4f6f8;
     min-height: 100vh;
+    min-width: 175dvh;
 }
 
 /* Header Styling */

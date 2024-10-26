@@ -21,7 +21,7 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container_Dashboard">
             <header className="header">
                 <div className="header-content">
                     <div className="app-title">

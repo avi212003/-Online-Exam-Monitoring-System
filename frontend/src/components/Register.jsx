@@ -1,5 +1,3 @@
-// frontend/src/components/Register.jsx
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/register.css'; // Ensure to import your CSS file
@@ -10,10 +8,53 @@ const Register = () => {
     const [gender, setGender] = useState('');
     const [file, setFile] = useState(null);
     const [msg, setMsg] = useState('');
+    const [errors, setErrors] = useState({ username: '', password: '' });
     const navigate = useNavigate();
+
+    // Helper functions for validation
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const validatePassword = (password) => {
+        const minLength = /.{8,}/;
+        const containsSpecial = /[!@#$%^&*(),.?":{}|<>]/;
+        const containsNumber = /[0-9]/;
+        const containsLetter = /[A-Za-z]/;
+        return (
+            minLength.test(password) &&
+            containsSpecial.test(password) &&
+            containsNumber.test(password) &&
+            containsLetter.test(password)
+        );
+    };
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        let formIsValid = true;
+
+        // Reset errors
+        setErrors({ username: '', password: '' });
+
+        // Validate username
+        if (!validateEmail(username)) {
+            setErrors(prevErrors => ({ ...prevErrors, username: 'Please enter a valid email address.' }));
+            formIsValid = false;
+        }
+
+        // Validate password
+        if (!validatePassword(password)) {
+            setErrors(prevErrors => ({
+                ...prevErrors,
+                password: 'Password must be at least 8 characters long, contain a letter, a number, and a special character.',
+            }));
+            formIsValid = false;
+        }
+
+        // If form is not valid, do not proceed with submission
+        if (!formIsValid) return;
+
         const formData = new FormData();
         formData.append('Username', username);
         formData.append('psw', password);
@@ -21,15 +62,15 @@ const Register = () => {
         if (file) {
             formData.append('filename', file);
         }
-    
+
         try {
             const response = await fetch('/api/register', {
                 method: 'POST',
                 body: formData,
             });
-    
+
             const data = await response.json();
-    
+
             if (response.ok) {
                 setMsg(data.msg);
                 // Store username in localStorage
@@ -62,11 +103,12 @@ const Register = () => {
                                 type="text"
                                 id="Username"
                                 name="Username"
-                                placeholder="Username"
+                                placeholder="Username (Email)"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 required
                             /><br />
+                            {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
                             <input
                                 className="input_field"
                                 type="password"
@@ -77,6 +119,7 @@ const Register = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             /><br />
+                            {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
                             <select
                                 className="input_field"
                                 id="gender_select"
@@ -100,20 +143,13 @@ const Register = () => {
                                 required
                                 onChange={handleFileChange}
                             />
-                            {/* <button
-                                type="button"
-                                className="label"
-                                onClick={() => document.getElementById('image_file').click()}
-                            >
-                                Choose File
-                            </button><br /> */}
-                            {file && <p>Selected File: {file.name}</p>}
+                            {file && <p style={{ color: "black" }}>Selected File: {file.name}</p>}
                             <input
                                 className="submit_button"
                                 type="submit"
                                 value="Register"
                             /><br />
-                            <h5>{msg}</h5>
+                            <h5 style={{ color: "black" }}>{msg}</h5>
                             <div className="register_link">
                                 Already have an Account? <Link to="/signin" className="black">Sign In</Link>
                             </div>

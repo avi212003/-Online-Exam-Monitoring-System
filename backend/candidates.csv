@@ -6,3 +6,5 @@ id,username,password,gender
 5,12345,$2b$12$u13IyJ72b2Vj74.3hyjVyelRY4XZvvYBel8NYeyLJGtA2ZumMdbe2,Male
 6,Akshit2,$2b$12$05NZK.lXjlwYOn1mP/AXsek5hoW1Z8lsOhTvlf983J1XQRTN8ojeK,Male
 7,Akshit123,$2b$12$W7Ny4hzzyO85eT1WduIHA.FmiCBVnVwgobIVsCQVr9Fc7D1tA6oma,Male
+8,123456,$2b$12$fgOnghz5eLCSqD7zOzKEreS6mLTkx34RfguCLt2lMqF2P8jgtfWru,Male
+9,akshit@gmail.com,$2b$12$XIty8X/fM94msQEyTQT1..AatFj.YVC8wRcsbbpiwMoxegad2TtTa,Male

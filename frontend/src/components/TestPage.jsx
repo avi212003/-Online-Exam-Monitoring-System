@@ -56,7 +56,7 @@ const TestPage = () => {
                     <div className="dash_header">Demo questions</div>
                 </div>
                 <div className="dash_body">
-                    <div className="welcome-message">
+                    <div className="welcome_message">
                         <h3>{welcomeMsg}</h3>
                     </div>
                     <div className="questions">

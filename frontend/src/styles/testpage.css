@@ -1,21 +1,34 @@
-/* frontend/src/components/testpage.css */
-
+/* Set a soft background and full height */
 .container {
     display: flex;
     flex-direction: column;
     height: 100vh;
-}
-
-.dash_row {
-    display: flex;
-    flex: 1;
-}
-
-.test_left, .test_right {
-    flex: 1;
+    background-color: #f4f6f9;
     padding: 20px;
 }
 
+/* Define row layout for flexible content */
+.dash_row {
+    display: flex;
+    flex: 1;
+    position: relative;  /* Allows for absolute positioning of the camera */
+}
+
+/* Left column for camera, positioned at the top left */
+.test_left {
+    flex: 1;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 300px; /* Fixed width for camera section */
+    height: auto;
+}
+
+/* Camera styling */
 .camera_div {
     display: flex;
     justify-content: center;
@@ -25,53 +38,114 @@
 
 .video_image {
     width: 100%;
-    max-width: 600px;
-    border: 2px solid #000;
+    max-width: 300px;
+    border: 3px solid #0076FF;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 118, 255, 0.2);
+    transition: transform 0.3s ease-in-out;
 }
 
-.test_bottom_div {
-    margin-top: 20px;
+.video_image:hover {
+    transform: scale(1.05);
 }
 
-.dash_head {
-    margin-bottom: 20px;
+/* Right section to hold the questions, center aligned */
+.test_right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
 }
 
-.dash_header {
-    font-size: 24px;
-    font-weight: bold;
-}
-
+/* Center the questions content */
 .dash_body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
 }
 
+/* Welcome message styling */
+.welcome_message {
+    font-size: 32px; /* Adjust size as needed */
+    font-weight: bold;
+    color: #000; /* Black color */
+    margin-bottom: 20px; /* Space below the message */
+}
+
+/* Questions styling */
 .questions {
     width: 100%;
     max-width: 600px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
+/* Individual question styling */
 .questions div {
     font-size: 18px;
     margin-bottom: 10px;
+    color: #444;
 }
 
+/* Label for questions */
 .questions label {
     display: block;
     margin-bottom: 5px;
     font-size: 16px;
+    font-weight: 600;
+    color: #666;
 }
 
+/* Submit button styling */
 .test_submit_button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 12px 25px;
+    font-size: 18px;
+    background-color: #0076FF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 118, 255, 0.4);
 }
 
+.test_submit_button:hover {
+    background-color: #005bb5;
+}
+
+/* Link styling for submit button */
 .test_submit_button a {
     text-decoration: none;
     color: inherit;
+}
+
+.test_submit_button:hover a {
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .test_left {
+        width: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+        padding: 10px;
+    }
+
+    .video_image {
+        max-width: 100%;
+    }
+
+    .test_right {
+        padding: 10px;
+    }
 }

@@ -11,7 +11,7 @@ import cv2
 import torch
 import face_recognition
 import warnings
-import torch.amp as amp
+import torch.cuda.amp as amp
 import bcrypt
 
 app = Flask(__name__)
@@ -87,25 +87,26 @@ def generate_frames(model, known_face_encodings, known_face_names):
             for left, top, right, bottom, name in faces:
                 cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
                 cv2.putText(frame, name, (left + 6, bottom - 6), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 255), 2)
-            
+
             # Perform object detection
-            with amp.autocast(device_type='cuda', dtype=torch.float16):
+            with amp.autocast(dtype=torch.float16):  # removed device_type='cuda'
                 results = model(frame)
-            
+
             # Check for specific objects
             device_detected = False
             for det in results.xyxy[0]:
                 if int(det[5]) in [67, 77]:  # 67 is 'cell phone', 77 is 'remote'
                     device_detected = True
                     break
-            
+
             if device_detected:
                 cv2.putText(frame, "Device detected", (20, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-            
+
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
 
 # API Route for Registration
 @app.route("/api/register", methods=["POST"])
@@ -131,9 +132,9 @@ def register():
         if (candidates[candidates.username == username].shape[0] != 0):
             msg = 'Account already exists!'
             return jsonify({"msg": msg}), 400
-        elif not re.match(r'^[A-Za-z0-9]+$', username):
-            msg = 'Username must contain only characters and numbers!'
-            return jsonify({"msg": msg}), 400
+        # elif not re.match(r'^[A-Za-z0-9]+$', username):
+        #     msg = 'Username must contain only characters and numbers!'
+        #     return jsonify({"msg": msg}), 400
         else:
             # Save the uploaded image
             file_extension = files.filename.split('.')[-1]
