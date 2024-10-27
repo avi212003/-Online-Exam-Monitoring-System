@@ -96,8 +96,9 @@ const Register = () => {
                 <div className="content">
                     <img className="register_image" src="http://localhost:5000/static/assets/register.png" alt="Register Illustration" />
                     <div className="card">
-                        <div className="header">Register</div>
+                        
                         <form onSubmit={handleRegister} className="register_form" encType="multipart/form-data">
+                        <div className="registerr">Register</div>
                             <input
                                 className="input_field"
                                 type="text"

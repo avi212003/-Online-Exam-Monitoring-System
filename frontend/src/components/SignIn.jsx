@@ -47,8 +47,9 @@ const SignIn = () => {
                 <div className="content">
                     <img className="register_image" src="http://localhost:5000/static/assets/SignIn.png" alt="Sign In Illustration" />
                     <div className="card">
-                        <div className="header">Sign In</div>
+                        
                         <form onSubmit={handleSignIn} className="register_form">
+                        <div className='signn' >Sign In</div>
                             <input
                                 className="input_field"
                                 type="text"
@@ -73,12 +74,13 @@ const SignIn = () => {
                                 className="submit_button"
                                 type="submit"
                                 value="Login"
-                            /><br /><br />
+                            />
                             <h5 style={{ color: "black" }}>{msg}</h5>
-                        </form>
-                        <div className="register_link">
+                            <div className="register_link">
                             Don't have an account? <Link to="/register" className="sign_up_instead">Register</Link>
                         </div>
+                        </form>
+                        
                     </div>
                 </div>
             </div>
