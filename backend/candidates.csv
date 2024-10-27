@@ -1,11 +1,4 @@
 id,username,password,gender
-1,Avi,avi,Male
-2,123,123,Male
-3,Akshit,akshit,Male
-4,Rahil,$2b$12$Ej.2gFNS.epg7CoMwYNGZOLIXQbTlQWKfHIUMxSyX69OMF7QJtj8K,Male
-5,12345,$2b$12$u13IyJ72b2Vj74.3hyjVyelRY4XZvvYBel8NYeyLJGtA2ZumMdbe2,Male
-6,Akshit2,$2b$12$05NZK.lXjlwYOn1mP/AXsek5hoW1Z8lsOhTvlf983J1XQRTN8ojeK,Male
-7,Akshit123,$2b$12$W7Ny4hzzyO85eT1WduIHA.FmiCBVnVwgobIVsCQVr9Fc7D1tA6oma,Male
-8,123456,$2b$12$fgOnghz5eLCSqD7zOzKEreS6mLTkx34RfguCLt2lMqF2P8jgtfWru,Male
-9,akshit@gmail.com,$2b$12$XIty8X/fM94msQEyTQT1..AatFj.YVC8wRcsbbpiwMoxegad2TtTa,Male
-10,avi@gmail.com,$2b$12$MlT/WSFhGNPCaGlY3ZJYhervEluN0xNGfolaCS5OawgxiMMzJ51wi,Male
+0,akshit@gmail.com,$2b$12$ZsN8UFOCV1CvBlMGfy8TZu4BK9zU8pAon5WDX/kI6wOKrxuUAhfma,Male
+1,rahil@gmail.com,$2b$12$YPzHn6CxTzlba3gMMtHh7.0pYM9erJy/EXkhAgBesUvLa4Grg7TTy,Male
+2,avi@gmail.com,$2b$12$TkSDRBA2ixj4XlACdWsRPu6h4ZyX0INXhA/lo99cHvOhONzBcuNum,Male

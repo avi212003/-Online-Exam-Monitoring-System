@@ -18,7 +18,7 @@ const TestPage = () => {
             const fetchWelcomeMsg = async () => {
                 const token = localStorage.getItem('token');
                 try {
-                    const response = await fetch('/api/test', {
+                    const response = await fetch('/api/test_welcome_msg', {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`,
@@ -46,7 +46,7 @@ const TestPage = () => {
             <div className="dash_row test_left">
                 <div className="camera_div">
                     <div className="video">
-                        <img src="/api/video_feed" alt="Live Monitoring" className="video_image" />
+                        <img src="/api/test" alt="Live Monitoring" className="video_image" />
                     </div>
                 </div>
                 <div className="test_bottom_div"></div>
