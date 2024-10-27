@@ -38,6 +38,7 @@
   /* Register component */
   .register_right {
     width: 100%;
+    height: 100%;
     /* background-color: rgba(142, 192, 250, 1); */
     /* background-color: white; */
     display: flex;
@@ -49,6 +50,7 @@
 
   .content {
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,7 +58,7 @@
 
   .card {
     width: 50%;
-    height: 50%;
+    height:fit-content;
     background-color: #FDFDFD;
     /* background-color: rgba(142, 192, 250, 1); */
     border-radius: 20px;

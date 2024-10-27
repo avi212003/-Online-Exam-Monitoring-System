@@ -1,39 +1,65 @@
 /* Set a soft background and full height */
+body {
+    width: 100%;
+    margin: 0;
+    overflow: hidden; /* Prevents the body from scrolling */
+}
+
+#root {
+    width: 100%;
+    max-height: 100vh; /* Limits the height for overall scrolling */
+}
+
 .container {
     display: flex;
-    flex-direction: column;
-    height: 100vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
     background-color: #f4f6f9;
     padding: 20px;
+    height: 100vh;
+    overflow-y: auto; /* Enables scrolling within the container */
+    gap: 20px;
+    width: 100%;
 }
 
 /* Define row layout for flexible content */
 .dash_row {
-    display: flex;
     flex: 1;
-    position: relative;  /* Allows for absolute positioning of the camera */
+    position: relative;
+    margin: 10px;
+    /* width: 100%; */
+    min-width: 300px;
+    height: fit-content;
 }
 
-/* Left column for camera, positioned at the top left */
+/* Left column for camera */
 .test_left {
     flex: 1;
-    padding: 20px;
-    position: absolute;
-    top: 0;
-    left: 0;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 300px; /* Fixed width for camera section */
-    height: auto;
+    justify-content: flex-start; /* Aligns content to the left */
+    /* align-items: flex-start; Aligns content to the top */
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    min-width: 300px;
+    height:max-content;
 }
 
 /* Camera styling */
 .camera_div {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100%;
+    /* align-items: center; */
+    width: 100%;
+    height: fit-content;
+}
+
+.video {
+    height: fit-content;
 }
 
 .video_image {
@@ -49,14 +75,23 @@
     transform: scale(1.05);
 }
 
-/* Right section to hold the questions, center aligned */
+/* Right section to hold the questions */
 .test_right {
-    flex: 1;
+    flex: 2;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 700px;
+    width: 70%;
+}
+
+.dash_header {
+    color: black;
 }
 
 /* Center the questions content */
@@ -64,17 +99,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
     width: 100%;
 }
 
 /* Welcome message styling */
 .welcome_message {
-    font-size: 32px; /* Adjust size as needed */
+    font-size: 28px;
     font-weight: bold;
-    color: #000; /* Black color */
-    margin-bottom: 20px; /* Space below the message */
+    color: #333;
+    margin-bottom: 20px;
 }
 
 /* Questions styling */
@@ -88,20 +122,24 @@
     margin-bottom: 20px;
 }
 
-/* Individual question styling */
 .questions div {
     font-size: 18px;
     margin-bottom: 10px;
     color: #444;
 }
 
-/* Label for questions */
+/* Label and radio input styling */
 .questions label {
-    display: block;
-    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
     font-size: 16px;
     font-weight: 600;
     color: #666;
+    margin-bottom: 10px;
+}
+
+.questions input[type="radio"] {
+    margin-right: 8px;
 }
 
 /* Submit button styling */
@@ -113,39 +151,44 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s;
     box-shadow: 0 4px 8px rgba(0, 118, 255, 0.4);
+    margin-top: 20px;
 }
 
 .test_submit_button:hover {
     background-color: #005bb5;
+    transform: translateY(-2px);
 }
 
-/* Link styling for submit button */
 .test_submit_button a {
     text-decoration: none;
     color: inherit;
 }
 
-.test_submit_button:hover a {
-    color: #fff;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .test_left {
+    .container {
+        flex-direction: column;
+    }
+
+    .test_left, .test_right {
         width: 100%;
-        position: relative;
-        top: 0;
-        left: 0;
         padding: 10px;
+        margin: 0;
+        height: fit-content;
     }
 
     .video_image {
         max-width: 100%;
+        height: fit-content;
     }
 
-    .test_right {
-        padding: 10px;
+    .welcome_message {
+        font-size: 24px;
+    }
+
+    .questions div {
+        font-size: 16px;
     }
 }
