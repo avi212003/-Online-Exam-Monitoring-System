@@ -21,14 +21,15 @@
   width: 150px;
 }
 
-.container {
+.profile_container {
   font-family: 'Arial, sans-serif';
   background-color: #f4f6f8;
   min-height: 100vh;
+  overflow-y: auto;
 }
 
 /* Header Styling */
-.header {
+.profile_header {
   width: 100%;
   /* background-color: #2e3b4e; */
   /* background-color: #131122; */
@@ -41,7 +42,7 @@
   z-index: 1000;
 }
 
-.header-content {
+.profile_header-content {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -63,7 +64,7 @@
   margin-right: 20px; /* Push the profile button to the right */
   padding: 0;
 }
-.app-title{
+.profile_app-title{
   font-size: 24px;
   margin-right: auto;
   display: flex;
@@ -71,24 +72,8 @@
   align-items: center;
 }
 
-.profile-button {
-  /* background-color: #ff9800; */
-  background-color: #4169E1;
-  border: none;
-  padding: 10px 15px;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.profile-button:hover {
-  background-color: #e68900;
-}
-
 /* Main Layout */
-.main {
+.profile_main {
   display: flex;
   width: 100%;
   height: calc(100vh - 70px);
@@ -97,7 +82,7 @@
 }
 
 /* Sidebar Styling */
-.sidebar {
+.profile_sidebar {
   width: 150px;
   background-color: white;
   color: #fff;
@@ -106,36 +91,30 @@
   top: 70px;
 }
 
-.sidebar ul {
+.profile_sidebar ul {
   list-style: none;
   padding: 0;
 }
 
-.sidebar li {
+.profile_sidebar li {
   padding: 15px 20px;
   cursor: pointer;
   transition: background 0.3s;
 }
 
-.sidebar li:hover,
-.sidebar li.active {
+.profile_sidebar li:hover,
+.profile_sidebar li.active {
   /* background-color: #1a252f; */
   background-color: #34495e;
 }
 
-.sidebar li.active {
+.profile_sidebar li.active {
   /* background-color: #ff9800; */
   background-color: #4169E1;
 }
 
-/* Right Side Styling */
-.right_side {
-  flex: 1;
-  padding: 20px 20px 20px 20px;
-}
-
 /* Welcome Section */
-.welcome-section {
+.profile_welcome-section {
   display: flex;
   align-items: center;
 }
@@ -147,7 +126,7 @@
   margin-right: 20px;
 }
 
-.welcome-section h2 {
+.profile_welcome-section h2 {
   font-size: 15px;
   color: black;
 }
@@ -171,12 +150,10 @@
   transform: translateY(-3px); /* Slight lift on hover */
 }
 
-.profile-card h3 {
+.profile-card h2 {
   margin-bottom: 15px;
   color: #2e3b4e;
   text-align: left;
-  border-bottom: 2px solid rgba(46, 59, 78, 0.2); /* Underline */
-  padding-bottom: 8px;
 }
 
 .profile-card div {
@@ -216,11 +193,9 @@
   transform: translateY(-3px); /* Lift effect */
 }
 
-.cheat-incidents h3, .exam-history h3 {
+.cheat-incidents h2, .exam-history h2 {
   margin-bottom: 20px;
-  color: #2e3b4e;
-  border-bottom: 2px solid rgba(46, 59, 78, 0.2); /* Underline */
-  padding-bottom: 8px;
+  color: #2e3b4e; 
 }
 
 .cheat-incidents-table, .exam-history table {
@@ -255,11 +230,11 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .main {
+  .profile_main {
     flex-direction: column;
   }
 
-  .sidebar {
+  .profile_sidebar {
     width: 100%;
     min-height: auto;
     position: relative;
@@ -280,11 +255,11 @@
   }
 
 
-  .header-content {
+  .profile_header-content {
     justify-content: center;
   }
 
-  .welcome-section h2 {
+  .profile_welcome-section h2 {
     font-size: 20px;
   }
 }
