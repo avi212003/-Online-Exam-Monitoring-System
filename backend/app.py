@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify, session, redirect, Response, url_for,
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import os
+from pymongo import MongoClient
 import re
 import pandas as pd
 import pickle
@@ -15,6 +16,7 @@ import time
 from datetime import datetime
 import face_recognition
 import warnings
+import certifi
 import torch.cuda.amp as amp
 import bcrypt
 
@@ -23,6 +25,10 @@ app.secret_key = 'your_secret_key'
 
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
 jwt = JWTManager(app)
+mongo_uri = "mongodb+srv://admin:admin@cluster0.fv8uf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+client = MongoClient(mongo_uri,tlsCAFile=certifi.where())
+db = client['studentdata']
+collection = db['studetails']
 
 # Global variables
 images = {}  # To store the loaded face images
@@ -113,7 +119,7 @@ def detect_faces_wc(known_face_encodings, known_face_names, frame):
 
 def generate_frames(model, known_face_encodings, known_face_names, username):
     camera = cv2.VideoCapture(0)
-    candidates = pd.read_csv('candidates.csv')
+    # candidates = pd.read_csv('candidates.csv')
     global index
 
     # Filter known encodings and names to only the logged-in user
@@ -223,25 +229,22 @@ def generate_frames(model, known_face_encodings, known_face_names, username):
 
 
 
-def get_next_index():
-    try:
-        candidates = pd.read_csv('candidates.csv')
-        # Get the maximum index from the existing candidates
-        max_id = candidates['id'].max()
-        return max_id + 1 if not pd.isnull(max_id) else 0
-    except FileNotFoundError:
-        return 0  # If the file doesn't exist, start from index 0
+# def get_next_index():
+#     try:
+#         candidates = pd.read_csv('candidates.csv')
+#         # Get the maximum index from the existing candidates
+#         max_id = candidates['id'].max()
+#         return max_id + 1 if not pd.isnull(max_id) else 0
+#     except FileNotFoundError:
+#         return 0  # If the file doesn't exist, start from index 0
 
 # API Route for Registration
+
+    
 @app.route("/api/register", methods=["POST"])
 def register():
     msg = ""
     try:
-        if os.path.exists("candidates.csv"):
-            candidates = pd.read_csv('candidates.csv')
-        else:
-            candidates = pd.DataFrame(columns=['id', 'username', 'password', 'gender'])
-        
         # Retrieve form data
         files = request.files.get("filename")
         username = request.form.get("Username")
@@ -253,7 +256,7 @@ def register():
             msg = 'Please fill out the form!'
             return jsonify({"msg": msg}), 400
         
-        if (candidates[candidates.username == username].shape[0] != 0):
+        if collection.find_one({"username": username}):
             msg = 'Account already exists!'
             return jsonify({"msg": msg}), 400
         
@@ -262,8 +265,6 @@ def register():
         file_path = os.path.join("face_images", f"{username}.{file_extension}")
         files.save(file_path)
         
-        # # Create face encoding for the new user using the make_encoding function
-        # make_encoding(username, known_face_encodings, file_path)  # Call to your existing function
         # Create face encoding for the new user
         image = face_recognition.load_image_file(file_path)
         face_encodings = face_recognition.face_encodings(image)
@@ -274,7 +275,7 @@ def register():
             print(f"Added face encoding for {username}: {face_encoding}")
         else:
             msg = 'No face detected in the image!'
-            print(msg)  # Add this line to log when no face is detected
+            print(msg)
             return jsonify({"msg": msg}), 400
 
         # Update known faces
@@ -283,44 +284,48 @@ def register():
         with open('known_face_encodings.txt', 'wb') as fp:
             pickle.dump(known_face_encodings, fp)
         
-        # Get the next available index for the new user
-        new_index = get_next_index()
-
-        # Add new user to candidates.csv
+        # Hash the password
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        new_row = {'id': new_index, 'username': username, 'password': hashed_password.decode('utf-8'), 'gender': gender}
-
-        # Concatenate the new row and save to CSV
-        candidates = pd.concat([candidates, pd.DataFrame([new_row])], ignore_index=True)
-        candidates.to_csv('candidates.csv', index=False)
         
+        # Create the new user record
+        new_user = {
+            'username': username,
+            'password': hashed_password.decode('utf-8'),
+            'gender': gender,
+            # 'face_encoding': face_encoding.tolist()  # Convert numpy array to list
+        }
+
+        # Insert the new user into the MongoDB collection
+        collection.insert_one(new_user)
+
         msg = "Registration successful!"
         return jsonify({"msg": msg}), 200
     except Exception as e:
         msg = f"An error occurred: {str(e)}"
         return jsonify({"msg": msg}), 500
+    
 
 # Modify /api/signin to return a JWT and store username in session
+
 @app.route("/api/signin", methods=["POST"])
 def signin():
     try:
-        candidates = pd.read_csv('candidates.csv') if os.path.exists('candidates.csv') else pd.DataFrame(columns=['id', 'username', 'password', 'gender'])
-        
         data = request.get_json()
         username = data.get('username')
         password = data.get('password')
-        
+
         if not username or not password:
             return jsonify({"msg": "Please provide both username and password"}), 400
-        
-        user = candidates[candidates.username == username].head(1)
-        if not user.empty:
-            stored_password = user['password'].values[0].encode('utf-8')
+
+        user = collection.find_one({"username": username})
+        if user:
+            stored_password = user['password'].encode('utf-8')
             if bcrypt.checkpw(password.encode('utf-8'), stored_password):
                 access_token = create_access_token(identity=username)
                 session['loggedin'] = True  # Optional: Store login state in session
                 session['username'] = username  # Store username in session
-                session['id'] = int(user['id'].values[0])  # Store user id in session
+                # session['id'] = int(user['id'].values[0])   # Store user id in session
+
                 return jsonify({"msg": "Sign-in successful", "access_token": access_token}), 200
             else:
                 return jsonify({"msg": "Invalid username or password"}), 401
@@ -340,17 +345,24 @@ def dashboard_api():
 @app.route("/api/test_welcome_msg", methods=["GET"])
 @jwt_required()
 def test():
+
     current_user = get_jwt_identity()
+    # print(current_user)
     return jsonify({"msg": f"Welcome to the test page, {current_user}!"}), 200
 
 # Video Feed Route
 @app.route("/api/test")
 def video_feed():
+    print(session)
     if 'username' in session:
         username = session['username']  # Get the username from the session
+        # print("hello")
+        print(username)
         return Response(generate_frames(model, known_face_encodings, known_face_names, username),
                         mimetype='multipart/x-mixed-replace; boundary=frame')
     else:
+        print("hello")
+
         return jsonify({"msg": "User not logged in"}), 401  # Handle case where user is not logged in
 
 if __name__ == '__main__':
