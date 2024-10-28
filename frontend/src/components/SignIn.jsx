@@ -8,9 +8,12 @@ import { AuthContext } from '../contexts/AuthContext';
 const SignIn = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [msg, setMsg] = useState('');
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
+
+    const toggleShowPassword = () => setShowPassword(!showPassword);
 
     const handleSignIn = async (e) => {
         e.preventDefault();
@@ -60,16 +63,21 @@ const SignIn = () => {
                                 onChange={(e) => setUsername(e.target.value)}
                                 required
                             /><br />
-                            <input
-                                className="input_field"
-                                type="password"
-                                id="password"
-                                name="psw"
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            /><br />
+                            <div className="signin-password-container">
+                                <input
+                                    className="input_field"
+                                    type={showPassword ? "text" : "password"}
+                                    id="password"
+                                    name="psw"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                                <span onClick={toggleShowPassword} className="signin-eye-icon">
+                                    {showPassword ? '🙈' : '👁️'} {/* Eye icon */}
+                                </span>
+                            </div>
                             <input
                                 className="submit_button"
                                 type="submit"
