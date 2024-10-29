@@ -24,22 +24,22 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="container">
-            <header className="header">
-                <div className="header-content">
-                    <div className="app-title">
+        <div className="dashboard_container">
+            <header className="dashboard_header">
+                <div className="dashboard_header-content">
+                    <div className="dashboard_app-title">
                         {/* <img className="logo" src="http://localhost:5000/static/assets/student_image.png" alt="Student Logo" /> */}
                         <h2>Online Monitoring System</h2>
                     </div>
-                    <div className="welcome-section">
+                    <div className="dashboard_welcome-section">
                         <img className="student-image" src="http://localhost:5000/static/assets/student_image.png" alt="Student" />
                         <h2 id="welcome-message">Welcome, {localStorage.getItem('username') || 'User'}!</h2>
                     </div>
                 </div>
             </header>
 
-            <div className="main">
-        <aside className="sidebar">
+            <div className="dashboard_main">
+        <aside className="dashboard_sidebar">
           <ul>
             <button className="home-button" onClick={() => navigate('/dashboard')}>
               <FaHome size={20} style={{ marginRight: '8px' }} />
