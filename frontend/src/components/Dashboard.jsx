@@ -41,11 +41,11 @@ const Dashboard = () => {
             <div className="main">
         <aside className="sidebar">
           <ul>
-            <button className="home-button">
+            <button className="home-button" onClick={() => navigate('/dashboard')}>
               <FaHome size={20} style={{ marginRight: '8px' }} />
               Home
             </button>
-            <button className = "myProfile-button">
+            <button className = "myProfile-button" onClick={() => navigate('/profile')}>
               <FaUser style={{ marginRight: '8px' }} />
               My Profile
             </button>
@@ -53,7 +53,7 @@ const Dashboard = () => {
               <FaEnvelope style={{ marginRight: '8px' }} />
               Contact Us
             </button>
-            <button className = "logout-button">
+            <button className = "logout-button" onClick={handleLogout}>
               <FaSignOutAlt style={{ marginRight: '8px' }} />
               Logout
             </button>
@@ -68,7 +68,7 @@ const Dashboard = () => {
               <p><strong>Subject:</strong> Data Structure </p>
               <p><strong>Date:</strong> 2024-10-15</p>
               <p><strong>Time:</strong> 10:00 AM - 12:00 PM</p>
-              <button className='start-exam-button'>Start Exam</button>
+              <button className='start-exam-button' onClick={() => navigate('/test')}>Start Exam</button>
             </div>
             <div className='upcoming_exams'>
               <h3>Upcoming Exams</h3>

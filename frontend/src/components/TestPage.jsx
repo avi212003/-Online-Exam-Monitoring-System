@@ -52,15 +52,15 @@ const TestPage = () => {
                 <div className="test_bottom_div"></div>
             </div>
             <div className="dash_row test_right">
-                <div className="dash_head">
+                {/* <div className="dash_head">
                     <div className="dash_header">Demo questions</div>
-                </div>
+                </div> */}
                 <div className="dash_body">
                     <div className="welcome_message">
                         <h3>{welcomeMsg}</h3>
                     </div>
                     <div className="questions">
-                        <div>1) Which of the following is not the type of queue?</div>
+                        <div className='question'>1) Which of the following is not the type of queue?</div>
                         <br />
                         <label>
                             <input type="radio" value="option1" name="question1" />
@@ -83,7 +83,7 @@ const TestPage = () => {
                         </label>
                         <br />
                         <br />
-                        <div>2) Which of the following is a linear data structure?</div>
+                        <div className='question'>2) Which of the following is a linear data structure?</div>
                         <br />
                         <label>
                             <input type="radio" value="option1" name="question2" />

@@ -17,7 +17,7 @@ body {
     justify-content: center;
     align-items: flex-start;
     background-color: #f4f6f9;
-    padding: 20px;
+    /* padding: 20px; */
     height: 100vh;
     overflow-y: auto; /* Enables scrolling within the container */
     gap: 20px;
@@ -40,7 +40,7 @@ body {
     display: flex;
     justify-content: flex-start; /* Aligns content to the left */
     /* align-items: flex-start; Aligns content to the top */
-    padding: 20px;
+    /* padding: 20px; */
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -62,11 +62,12 @@ body {
 
 .video {
     height: fit-content;
+    background: none;
 }
 
 .video_image {
     width: 100%;
-    max-width: 300px;
+    /* max-width: 300px; */
     border: 3px solid #0076FF;
     border-radius: 10px;
     box-shadow: 0 6px 12px rgba(0, 118, 255, 0.2);
@@ -116,12 +117,17 @@ body {
 /* Questions styling */
 .questions {
     width: 100%;
-    max-width: 600px;
+    /* max-width: 600px; */
     padding: 15px;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+}
+
+.questions .question {
+    font-weight: bold;
+    text-align: start;
 }
 
 .questions div {
@@ -135,7 +141,7 @@ body {
     display: flex;
     align-items: center;
     font-size: 16px;
-    font-weight: 600;
+    /* font-weight: 600; */
     color: #666;
     margin-bottom: 10px;
 }

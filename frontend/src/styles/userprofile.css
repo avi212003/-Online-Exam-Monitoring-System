@@ -79,7 +79,7 @@
   height: calc(100vh - 70px);
   margin-top: 70px;
   gap: 20px;
-} */
+}
 
 /* Sidebar Styling */
 .profile_sidebar {
@@ -89,7 +89,7 @@
   min-height: calc(100vh - 70px);
   position: sticky;
   top: 70px;
-} */
+}
 
 .profile_sidebar ul {
   list-style: none;
