@@ -21,16 +21,18 @@
     width: 150px;
   }
   
-  .container {
+  .dashboard_container {
     font-family: 'Arial, sans-serif';
     background-color: #f4f6f8;
     min-height: 100vh;
-    width: 210vh;
-    padding-left: 0;
+    width: 240vh;
+    padding-top: 30px;
+    padding-right: 540px;
+    overflow-y: auto;
   }
   
   /* Header Styling */
-  .header {
+  .dashboard_header {
     width: 100%;
     background-color: deepskyblue;
     padding: 10px 20px;
@@ -41,7 +43,7 @@
     z-index: 1000;
   }
   
-  .header-content {
+  .dashboard_header-content {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -56,15 +58,15 @@
   .scores{
     display: flex;
   }
-  
 
   .logo {
     height: 50px;
     margin-right: 20px; /* Push the profile button to the right */
     padding: 0;
   }
-  .app-title{
+  .dashboard_app-title{
     font-size: 24px;
+    font-weight: bold;
     margin-right: auto;
     display: flex;
     justify-content: center;
@@ -87,7 +89,7 @@
   }
   
   /* Main Layout */
-  .main {
+  .dashboard_main {
     display: flex;
     width: 100%;
     height: calc(136vh - 70px);
@@ -97,33 +99,32 @@
   }
   
   /* Sidebar Styling */
-  .sidebar {
-    margin-top: 24px;
+  .dashboard_sidebar {
+    margin-top: 25px;
     width: 150px;
     background-color: white;
     color: #fff;
     min-height: calc(100vh - 70px);
     position: sticky;
-    /* top: 10px; */
   }
   
-  .sidebar ul {
+  .dashboard_sidebar ul {
     list-style: none;
     padding: 0;
   }
   
-  .sidebar li {
+  .dashboard_sidebar li {
     padding: 15px 20px;
     cursor: pointer;
     transition: background 0.3s;
   }
   
-  .sidebar li:hover,
-  .sidebar li.active {
+  .dashboard_sidebar li:hover,
+  .dashboard_sidebar li.active {
     background-color: #34495e;
   }
   
-  .sidebar li.active {
+  .dashboard_sidebar li.active {
     background-color: #4169E1;
   }
 
@@ -152,7 +153,7 @@
   }
   
   /* Welcome Section */
-  .welcome-section {
+  .dashboard_welcome-section {
     display: flex;
     align-items: center;
   }
@@ -164,7 +165,7 @@
     margin-right: 20px;
   }
   
-  .welcome-section h2 {
+  .dashboard_welcome-section h2 {
     font-size: 15px;
     color: black;
   }
@@ -175,7 +176,7 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
@@ -290,7 +291,7 @@
   
   /* Responsive Design */
   @media (max-width: 768px) {
-    .main {
+    .dashboard_main {
       flex-direction: column;
     }
   
