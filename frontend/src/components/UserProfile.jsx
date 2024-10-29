@@ -41,7 +41,7 @@ const UserProfile = () => {
           </div>
           {<div className='profile_welcome-section'>
               <img className='student-image' src='http://localhost:5000/static/assets/student_image.png' alt="Student" />
-              <h2 id="welcome-message">Welcome, {localStorage.getItem('username') || 'User'}!</h2>
+              <h2 id="profile_welcome-message">Welcome, {localStorage.getItem('username') || 'User'}!</h2>
           </div>}
         </div>
       </header>
@@ -75,21 +75,20 @@ const UserProfile = () => {
         {/* Personal Information Section */}
         <section className="profile-card">
         <div>
-        <h2>Personal Information</h2>
+        <h3>Personal Information</h3>
         </div>
          <form className="form">
           <div className="info-section">
-           <p><strong>Full Name:</strong></p>
-           <p><strong>Email:</strong></p>
-           <p><strong>Date of birth:</strong></p>
+           <p><strong>Full Name: Avi Chauhan</strong></p>
+           <p><strong>Email: {localStorage.getItem('username') || 'User'}</strong></p>
+           <p><strong>Date of birth: 12/07/2001</strong></p>
           </div>
          </form>
         </section>
 
         {/* Previous Exam History Section */}
-        
         <section className="exam-history">
-        <h2>Previous Exam History</h2>
+        <h3>Previous Exam History</h3>
           <table className="exam-table">
             <thead>
               <tr>
@@ -116,7 +115,7 @@ const UserProfile = () => {
 
         {/* Cheat Incidents Section */}
         <section className="cheat-incidents">
-        <h2>Cheat Incidents</h2>
+        <h3>Cheat Incidents</h3>
           <table className="cheat-incidents-table">
             <thead>
               <tr>
