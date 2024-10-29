@@ -107,9 +107,11 @@ const TestPage = () => {
                         <br />
                         <br />
                     </div>
-                    <button className="test_submit_button">
-                        <Link to="/dashboard">Submit</Link>
-                    </button>
+                    <Link to="/dashboard">
+                        <button className="test_submit_button">
+                            Submit
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
