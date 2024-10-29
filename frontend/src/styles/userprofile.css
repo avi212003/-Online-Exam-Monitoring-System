@@ -88,23 +88,23 @@
 }
 
 /* Main Layout */
-.main {
+/* .main {
   display: flex;
   width: 100%;
   height: calc(100vh - 70px);
   margin-top: 70px;
   gap: 20px;
-}
+} */
 
 /* Sidebar Styling */
-.sidebar {
+/* .sidebar {
   width: 150px;
   background-color: white;
   color: #fff;
   min-height: calc(100vh - 70px);
   position: sticky;
   top: 70px;
-}
+} */
 
 .sidebar ul {
   list-style: none;
