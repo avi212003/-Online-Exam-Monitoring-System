@@ -32,22 +32,21 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="container">
-      <header className="header">
-        <div className="header-content">
-          <div className="app-title">
+    <div className="profile_container">
+      <header className="profile_header">
+        <div className="profile_header-content">
+          <div className="profile_app-title">
             {/* <img className="logo" src={studentImage} alt="Student" /> */}
             <h2>Online Monitoring System</h2>
           </div>
-          {<div className='welcome-section'>
+          {<div className='profile_welcome-section'>
               <img className='student-image' src='http://localhost:5000/static/assets/student_image.png' alt="Student" />
-              <h2>Welcome, {name}!</h2>
+              <h2 id="welcome-message">Welcome, {localStorage.getItem('username') || 'User'}!</h2>
           </div>}
-          { <button className="profile-button">Profile</button>}
         </div>
       </header>
-      <div className="main">
-        <aside className='sidebar'>
+      <div className="profile_main">
+        <aside className='profile_sidebar'>
           <ul>
             {/* <li className="active">Home</li> */}
             <button className="home-button" onClick={() => navigate('/dashboard')}>
@@ -71,7 +70,7 @@ const UserProfile = () => {
           </ul>
         </aside>
         
-      <main className="main-content">
+      <main className="profile_main-content">
       <div className ='user_profile'>User Profile</div>
         {/* Personal Information Section */}
         <section className="profile-card">

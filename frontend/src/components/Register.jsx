@@ -5,11 +5,14 @@ import '../styles/register.css'; // Ensure to import your CSS file
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [gender, setGender] = useState('');
     const [file, setFile] = useState(null);
     const [msg, setMsg] = useState('');
     const [errors, setErrors] = useState({ username: '', password: '' });
     const navigate = useNavigate();
+
+    const toggleShowPassword = () => setShowPassword(!showPassword);
 
     // Helper functions for validation
     const validateEmail = (email) => {
@@ -110,16 +113,21 @@ const Register = () => {
                                 required
                             /><br />
                             {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
-                            <input
-                                className="input_field"
-                                type="password"
-                                id="password"
-                                name="psw"
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            /><br />
+                            <div className="register-password-container">
+                                <input
+                                    className="input_field"
+                                    type={showPassword ? "text" : "password"}
+                                    id="password"
+                                    name="psw"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                                <span onClick={toggleShowPassword} className="register-eye-icon">
+                                    {showPassword ? '🙈' : '👁️'} {/* Eye icon, replace with FontAwesome if desired */}
+                                </span>
+                            </div>
                             {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
                             <select
                                 className="input_field"

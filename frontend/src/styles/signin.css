@@ -91,6 +91,18 @@ html, body {
   border-radius: 10px;
 }
 
+.signin-password-container {
+  position: relative;
+}
+
+.signin-eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 35%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
 /* Submit button */
 .submit_button {
   width: 100%;
