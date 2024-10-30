@@ -191,7 +191,7 @@
   .current_exam div{
     text-align: left;
     width: 350px;
-  }
+  } 
   
   .exam-details p {
     margin-bottom: 10px;
@@ -289,39 +289,57 @@
     color: #333;
   }
   
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .dashboard_main {
-      flex-direction: column;
-    }
-  
-    .sidebar {
-      width: 100%;
-      min-height: auto;
-      position: relative;
-      top: 0;
-    }
-  
-    .past_upcoming_exams {
-      flex-direction: column;
-    }
-  
-    .header-content {
-      justify-content: center;
-    }
-  
-    /* Optional: Adjust padding for smaller screens */
-    .right_side {
-      padding: 15px;
-    }
-  
-    .welcome-section h2 {
-      font-size: 20px;
-    }
-  
-    .current_exam,
-    .past_exam_scores,
-    .upcoming_exams {
-      padding: 15px;
-    }
+ /* Responsive Design */
+@media (max-width: 1024px) {
+  .dashboard_main {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .dashboard_sidebar {
+    width: 100%;
+    position: relative;
+  }
+
+  .past_upcoming_exams {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard_app-title {
+    font-size: 20px;
+  }
+
+  .right_side, .current_exam, .past_exam_scores, .upcoming_exams {
+    padding: 15px;
+  }
+
+  .dashboard_welcome-section h2 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard_app-title {
+    font-size: 18px;
+  }
+
+  .home-button, .myProfile-button, .contact-button, .logout-button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .dashboard_welcome-section h2 {
+    font-size: 14px;
+  }
+
+  .dashboard_sidebar li {
+    padding: 10px;
+  }
+
+  .start-exam-button, .profile-button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
 }
