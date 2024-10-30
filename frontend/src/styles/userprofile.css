@@ -234,37 +234,42 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .profile_main {
     flex-direction: column;
+    align-items: center;
   }
 
   .profile_sidebar {
     width: 100%;
-    min-height: auto;
     position: relative;
-    top: 0;
+    min-height: auto;
   }
 
-  .profile-card div {
-    width: 100%; /* Full width on smaller screens */
-  }
-
-  .cheat-incidents, .exam-history, .profile-card {
-    padding: 18px;
+  .profile-card, .exam-history, .cheat-incidents {
+    width: 100%;
     box-shadow: none;
+    padding: 15px;
   }
+}
 
-  .cheat-incidents, .exam-history {
-    margin-bottom: 16px;
-  }
-
-
+@media (max-width: 768px) {
   .profile_header-content {
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
   }
 
   .profile_welcome-section h3 {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  .profile_sidebar {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .profile-card div, .cheat-incidents div, .exam-history div {
+    width: 100%;
   }
 }
