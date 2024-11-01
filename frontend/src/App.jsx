@@ -1,17 +1,19 @@
 // frontend/src/App.jsx
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import SignIn from './components/SignIn';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
-import TestPage from './components/TestPage'; // Import TestPage
+import TestPage from './components/TestPage';
 import UserProfile from './components/UserProfile';
 import { AuthProvider, AuthContext } from './contexts/AuthContext';
-import { useContext } from 'react';
 
 const PrivateRoute = ({ children }) => {
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated, loading } = useContext(AuthContext);
+
+    if (loading) return null; // Wait until loading is false
+
     return isAuthenticated ? children : <Navigate to="/signin" />;
 };
 
@@ -20,10 +22,17 @@ const App = () => {
         <AuthProvider>
             <Router>
                 <Routes>
-                    <Route path="/" element={<Navigate to="/register" />} /> {/* Default to register */}
+                    <Route path="/" element={<Navigate to="/register" />} />
                     <Route path="/signin" element={<SignIn />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path='/profile' element={<UserProfile />}></Route>
+                    <Route
+                        path="/profile"
+                        element={
+                            <PrivateRoute>
+                                <UserProfile />
+                            </PrivateRoute>
+                        }
+                    />
                     <Route
                         path="/dashboard"
                         element={
