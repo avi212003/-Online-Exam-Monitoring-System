@@ -30,10 +30,10 @@ const SignIn = () => {
     
             if (response.ok) {
                 setMsg(data.msg);
-                // Store JWT token and username in localStorage
-                localStorage.setItem('token', data.access_token);
-                localStorage.setItem('username', username);
-                login(); // Update authentication state
+
+                // 🔄 **Updated: Call login with token and username**
+                login(data.access_token, username); 
+                
                 navigate('/dashboard'); // Redirect to dashboard on successful sign-in
             } else {
                 setMsg(data.msg || 'Sign-in failed. Please try again.');
