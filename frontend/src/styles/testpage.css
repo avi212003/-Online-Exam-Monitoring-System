@@ -150,6 +150,10 @@ body {
     margin-right: 8px;
 }
 
+.error-message {
+    color: red;
+}
+
 /* Submit button styling */
 .test_submit_button {
     padding: 12px 25px;
