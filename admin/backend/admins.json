@@ -1,0 +1,78 @@
+{
+  "admins": [
+    {
+      "username": "Avi",
+      "password": "$2b$10$APbe5kiaST8MHGHPRRnYxu0whl2LGa9gSWHVCb6s8yP4f7F.rl4Wu",
+      "subject": "Math",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiTWF0aCIsImlhdCI6MTczMDgyMjI5N30.RqpnrpyDU71FjfBlwAzpRjCY73YgXBAXmkxJkSGytsw",
+      "exams": [
+        {
+          "id": "1730826670102",
+          "title": "Midterm 1",
+          "date": "2024-11-05",
+          "subject": "Math",
+          "questions": [
+            {
+              "question": "1 + 1?",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "answer": "2",
+              "error": ""
+            }
+          ]
+        },
+        {
+          "id": "1730828177023",
+          "title": "Midterm 2",
+          "date": "2024-11-06",
+          "subject": "Math",
+          "questions": [
+            {
+              "question": "1 + 2?",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "answer": "3",
+              "error": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "username": "Akshit",
+      "password": "$2b$10$n1hYNuMB9H2VFgJLEDPfyOLbQZIvEEqgVP5nN76ElkOC1qH0CgMVS",
+      "subject": "Computer Networks",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiQ29tcHV0ZXIgTmV0d29ya3MiLCJpYXQiOjE3MzA4MjkwMTV9.yOjdLkLY5mAseHxFLCjUj3x63c6Cs8pQ4Sjaso4fMwg",
+      "exams": [
+        {
+          "id": "1730829151928",
+          "title": "Test 1",
+          "date": "2024-11-10",
+          "subject": "Computer Networks",
+          "questions": [
+            {
+              "question": "C in CN stands for?",
+              "options": [
+                "Computer",
+                "Console",
+                "Connection",
+                "Client",
+                "Cold"
+              ],
+              "answer": "Computer",
+              "error": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
