@@ -1,0 +1,47 @@
+/* Styles for the test page */
+
+.test-page {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  .test-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .test-page div {
+    margin-bottom: 15px;
+  }
+  
+  .test-page h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .test-page label {
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .test-page button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .test-page button:hover {
+    background-color: #45a049;
+  }
+  
+  .test-page p {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+  }
+  

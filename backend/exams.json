@@ -1,0 +1,84 @@
+[
+  {
+    "title": "Sample Exam",
+    "questions": [
+      {
+        "question": "What is 2 + 2?",
+        "options": [
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "correctAnswer": "4"
+      },
+      {
+        "question": "What is the capital of France?",
+        "options": [
+          "Berlin",
+          "Madrid",
+          "Paris",
+          "Rome"
+        ],
+        "correctAnswer": "Paris"
+      }
+    ]
+  },
+  {
+    "title": "Second Exam",
+    "questions": [
+      {
+        "question": "What is SE?",
+        "options": [
+          "good",
+          "bad",
+          "ok",
+          "not okay"
+        ],
+        "correctAnswer": "good"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "questions": [
+      {
+        "question": "asdfffff",
+        "options": [
+          "a",
+          "s",
+          "d",
+          "f"
+        ],
+        "answer": "a"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "pppp",
+    "description": "pp",
+    "questions": [
+      {
+        "question": "q",
+        "options": [
+          "1",
+          "23",
+          "3",
+          "5"
+        ],
+        "answer": "5"
+      },
+      {
+        "question": "i",
+        "options": [
+          "1",
+          "22",
+          "34",
+          "55"
+        ],
+        "answer": "55"
+      }
+    ]
+  }
+]

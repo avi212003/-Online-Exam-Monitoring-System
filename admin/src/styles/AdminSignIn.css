@@ -1,0 +1,38 @@
+/* admin/styles/AdminSignIn.css */
+
+.admin-sign-in {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .admin-sign-in input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .admin-sign-in button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .admin-sign-in button:hover {
+    background-color: #45a049;
+  }
+  
+  .admin-sign-in p {
+    text-align: center;
+    color: #f00;
+  }
+  
