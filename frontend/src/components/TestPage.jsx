@@ -11,6 +11,7 @@ const TestPage = () => {
     const [welcomeMsg, setWelcomeMsg] = useState('');
     const [selectedAnswers, setSelectedAnswers] = useState({}); // Store answers
     const [errorMessage, setErrorMessage] = useState(''); // For error handling
+    const [showPopup, setShowPopup] = useState(false);//Popup message
 
     // Define your questions and options
     const questions = [
@@ -64,6 +65,18 @@ const TestPage = () => {
             };
             fetchWelcomeMsg();
         }
+        //Beforeunload event listener
+        const handleBeforeUnload = (event) => {
+            event.preventDefault();
+            setShowPopup(true);
+            event.returnValue = ''; // Necessary for some browsers
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
     }, [isAuthenticated, navigate]);
 
     const handleAnswerChange = (questionId, answer) => {
@@ -101,6 +114,7 @@ const TestPage = () => {
             });
 
             if (response.ok) {
+                window.removeEventListener('beforeunload', () => {});
                 navigate('/dashboard'); // Redirect on success
             } else {
                 console.error('Failed to submit answers.');
@@ -108,6 +122,15 @@ const TestPage = () => {
         } catch (error) {
             console.error('Error submitting answers:', error);
         }
+    };
+
+    const handleCancel = () => {
+        setShowPopup(false); // Close popup without refreshing
+    };
+
+    const handleContinue = () => {
+        setShowPopup(false); // Allow refresh
+        window.location.reload();
     };
 
     return (
@@ -149,6 +172,17 @@ const TestPage = () => {
                     </button>
                 </div>
             </div>
+            {/* Popup for refresh warning */}
+            {showPopup && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h2>Warning</h2>
+                        <p>Are you sure you want to refresh the page? Unsaved changes may be lost.</p>
+                        <button onClick={handleContinue}>Continue</button>
+                        <button onClick={handleCancel}>Cancel</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
