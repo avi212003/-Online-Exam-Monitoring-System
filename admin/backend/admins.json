@@ -43,6 +43,75 @@
               "error": ""
             }
           ]
+        },
+        {
+          "id": "1731100447690",
+          "title": "Midterm 3",
+          "date": "2024-11-08",
+          "subject": "Math",
+          "questions": [
+            {
+              "question": "2+2?",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "answer": "4",
+              "error": ""
+            },
+            {
+              "question": "2*2?",
+              "options": [
+                "0",
+                "1",
+                "2",
+                "4",
+                "8"
+              ],
+              "answer": "4",
+              "error": ""
+            }
+          ]
+        },
+        {
+          "id": "1731100746382",
+          "title": "Midterm 4",
+          "date": "2024-11-08",
+          "subject": "Math",
+          "questions": [
+            {
+              "question": "3+3?",
+              "options": [
+                "2",
+                "4",
+                "6",
+                "8"
+              ],
+              "answer": "6",
+              "error": ""
+            }
+          ]
+        },
+        {
+          "id": "1731100931041",
+          "title": "Midterm 5",
+          "date": "2024-11-09",
+          "subject": "Math",
+          "questions": [
+            {
+              "question": "1*1?",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "answer": "1",
+              "error": ""
+            }
+          ]
         }
       ]
     },
@@ -68,6 +137,33 @@
                 "Cold"
               ],
               "answer": "Computer",
+              "error": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "username": "Rahil",
+      "password": "$2b$10$xkB1karjqHzhWQtmxu5a6uqpa4CLcdMsNsN3H93R1SeHcUggh4CGu",
+      "subject": "History",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiSGlzdG9yeSIsImlhdCI6MTczMDg3Mjk0NX0.G1MkMdupaKUQRtdKl65sZC80kXxLP7w_-GuCj6A7JwA",
+      "exams": [
+        {
+          "id": "1730873044947",
+          "title": "Midterm 1",
+          "date": "2024-11-09",
+          "subject": "History",
+          "questions": [
+            {
+              "question": "India independence?",
+              "options": [
+                "1945",
+                "1946",
+                "1947",
+                "1948"
+              ],
+              "answer": "1947",
               "error": ""
             }
           ]

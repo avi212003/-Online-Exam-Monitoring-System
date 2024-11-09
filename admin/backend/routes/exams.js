@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const router = express.Router();
+const adminsData = require('../admins.json');
 
 // Create Exam
 router.post('/createExam', (req, res) => {
@@ -43,6 +44,31 @@ router.get('/getExams', (req, res) => {
     res.json({ message: 'You have not created any exam.' });
   } else {
     res.json(admin.exams);
+  }
+});
+
+// Get first exam from the first admin
+router.get('/get_first_exam', (req, res) => {
+  const firstAdmin = adminsData.admins[0];
+  if (firstAdmin && firstAdmin.exams.length > 0) {
+      res.json(firstAdmin.exams[0]); // Send the first exam of the first admin
+  } else {
+      res.status(404).json({ message: 'No exam found' });
+  }
+});
+
+// Get All Exams created by all admins
+router.get('/get_all_exams', (req, res) => {
+  const filePath = path.join(__dirname, '../admins.json');
+  const adminsData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+  // Collect all exams from each admin
+  const allExams = adminsData.admins.flatMap(admin => admin.exams);
+
+  if (allExams.length === 0) {
+    res.json({ message: 'No exams found.' });
+  } else {
+    res.json(allExams);
   }
 });
 

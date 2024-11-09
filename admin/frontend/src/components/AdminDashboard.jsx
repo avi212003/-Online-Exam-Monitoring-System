@@ -52,7 +52,7 @@ const AdminDashboard = () => {
       {exams.length > 0 ? (
         <ul className="exams-list">
           {exams.map((exam) => (
-            <li key={exam._id} className="exam-item">{exam.title}</li>
+            <li key={exam.id} className="exam-item">{exam.title}</li>
           ))}
         </ul>
       ) : (
