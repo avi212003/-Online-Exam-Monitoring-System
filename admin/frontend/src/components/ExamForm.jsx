@@ -3,7 +3,7 @@ import axios from 'axios';
 import api from '../config/axios.js';
 import { useAuth } from '../context/AuthContext';
 
-const ExamForm = ({ subject }) => { // Receive subject as a prop
+const ExamForm = ({ subject, onExamCreated }) => { // Receive subject as a prop
   const { auth } = useAuth();
   const [title, setTitle] = useState(''); // Exam title
   const [date, setDate] = useState(''); // Exam date
@@ -19,13 +19,9 @@ const ExamForm = ({ subject }) => { // Receive subject as a prop
       } else if (field.startsWith('option')) {
         const optionIndex = parseInt(field.split('option')[1], 10);
         updatedQuestions[index].options[optionIndex] = value;
-
         // Check for duplicate options
         const uniqueOptions = new Set(updatedQuestions[index].options);
-        updatedQuestions[index].error =
-          uniqueOptions.size !== updatedQuestions[index].options.length
-            ? 'Options must be unique'
-            : '';
+        updatedQuestions[index].error = uniqueOptions.size !== updatedQuestions[index].options.length ? 'Options must be unique' : '';
       } else if (field === 'answer') {
         updatedQuestions[index].answer = value;
       }
@@ -69,9 +65,18 @@ const ExamForm = ({ subject }) => { // Receive subject as a prop
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if options are unique
     const hasError = questions.some((q) => q.error);
     if (hasError) {
       alert('Please ensure all options are unique in each question.');
+      return;
+    }
+
+    // Check if answers match any options
+    const hasInvalidAnswers = questions.some(q => !q.options.includes(q.answer));
+    if (hasInvalidAnswers) {
+      alert('Each answer must match one of the options.');
       return;
     }
 
@@ -88,6 +93,14 @@ const ExamForm = ({ subject }) => { // Receive subject as a prop
         headers: { Authorization: `Bearer ${auth}` }
       });
       console.log(response.data.message);
+
+      // Reset form fields
+      setTitle('');
+      setDate('');
+      setQuestions([{ question: '', options: ['', '', '', ''], answer: '', error: '' }]);
+
+      // Notify AdminDashboard to refresh the exams list
+      if (onExamCreated) onExamCreated();
     } catch (error) {
       console.log('Failed to create exam:', error);
     }
