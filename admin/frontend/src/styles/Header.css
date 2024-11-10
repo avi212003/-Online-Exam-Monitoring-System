@@ -1,0 +1,12 @@
+.navbar-header {
+    padding: 10px;
+    text-align: center;
+    background-color: #343a40;
+    color: #fff;
+    /* height: 100%; */
+}
+
+.navbar-username {
+    font-size: 14px;
+    color: #ced4da;
+}

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import api from '../config/axios.js';
 import { useAuth } from '../context/AuthContext';
+import '../styles/ExamForm.css';
 
 const ExamForm = ({ subject, onExamCreated }) => { // Receive subject as a prop
   const { auth } = useAuth();
+  const navigate = useNavigate();
   const [title, setTitle] = useState(''); // Exam title
   const [date, setDate] = useState(''); // Exam date
   const [questions, setQuestions] = useState([
@@ -101,21 +104,23 @@ const ExamForm = ({ subject, onExamCreated }) => { // Receive subject as a prop
 
       // Notify AdminDashboard to refresh the exams list
       if (onExamCreated) onExamCreated();
+      navigate('/dashboard'); // Redirect to dashboard
     } catch (error) {
       console.log('Failed to create exam:', error);
     }
   };
 
   return (
-    <div>
-      <h3>Create Exam for {subject}</h3> {/* Display subject here */}
-      <form onSubmit={handleSubmit}>
+    <div className="examform-container">
+      <h3 className="examform-heading">Create Exam for {subject}</h3>
+      <form onSubmit={handleSubmit} className="examform-form">
         <input
           type="text"
           placeholder="Title of Exam"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
+          className="examform-input examform-title"
         />
         <input
           type="date"
@@ -123,15 +128,17 @@ const ExamForm = ({ subject, onExamCreated }) => { // Receive subject as a prop
           min={new Date().toISOString().split('T')[0]}
           onChange={(e) => setDate(e.target.value)}
           required
+          className="examform-input examform-date"
         />
         {questions.map((question, index) => (
-          <div key={index} className="question-item">
+          <div key={index} className="examform-question-item">
             <input
               type="text"
               placeholder="Question"
               value={question.question}
               onChange={(e) => handleQuestionChange(index, 'question', e.target.value)}
               required
+              className="examform-input examform-question"
             />
             {question.options.map((option, optIndex) => (
               <input
@@ -141,13 +148,14 @@ const ExamForm = ({ subject, onExamCreated }) => { // Receive subject as a prop
                 value={option}
                 onChange={(e) => handleQuestionChange(index, `option${optIndex}`, e.target.value)}
                 required
+                className="examform-input examform-option"
               />
             ))}
-            {question.error && <p className="error-message">{question.error}</p>}
-            <button type="button" onClick={() => increaseOptions(index)} className="option-button">
+            {question.error && <p className="examform-error-message">{question.error}</p>}
+            <button type="button" onClick={() => increaseOptions(index)} className="examform-option-button">
               Increase Options
             </button>
-            <button type="button" onClick={() => decreaseOptions(index)} className="option-button">
+            <button type="button" onClick={() => decreaseOptions(index)} className="examform-option-button">
               Decrease Options
             </button>
             <input
@@ -156,14 +164,17 @@ const ExamForm = ({ subject, onExamCreated }) => { // Receive subject as a prop
               value={question.answer}
               onChange={(e) => handleQuestionChange(index, 'answer', e.target.value)}
               required
+              className="examform-input examform-answer"
             />
-            <button type="button" onClick={() => removeQuestion(index)} className="remove-button">
+            <button type="button" onClick={() => removeQuestion(index)} className="examform-remove-button">
               Remove Question
             </button>
           </div>
         ))}
-        <button type="button" onClick={addQuestion}>Add Question</button>
-        <button type="submit">Create Exam</button>
+        <button type="button" onClick={addQuestion} className="examform-add-question-button">
+          Add Question
+        </button>
+        <button type="submit" className="examform-submit-button">Create Exam</button>
       </form>
     </div>
   );

@@ -18,8 +18,8 @@ const AdminSignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post('/api/auth/signin', formData); // Use `api` instead of `axios`
-      login(response.data.token);
+      const response = await api.post('/api/auth/signin', formData);
+      login(response.data.token, formData.username);
       navigate('/dashboard');
     } catch (error) {
       setError('Invalid credentials');

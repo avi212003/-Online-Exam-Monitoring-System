@@ -1,0 +1,20 @@
+/* src/styles/Layout.css */
+.layout-container {
+    height: 100vh;
+}
+
+.header {
+    height: 10vh;
+}
+
+.layout-side-plus-main {
+    display: flex;
+    height: 90vh;
+}
+
+.main-content {
+    flex-grow: 1;
+    /* padding: 20px; */
+    overflow-y: auto;
+    background-color: #f8f9fa;
+}

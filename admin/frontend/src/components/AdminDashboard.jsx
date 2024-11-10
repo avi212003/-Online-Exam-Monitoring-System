@@ -53,11 +53,18 @@ const AdminDashboard = () => {
     <div className="dashboard-container">
       <h2 className="dashboard-title">Admin Dashboard</h2>
       <p>Subject: {subject}</p>
-      <button onClick={handleLogout} className="logout-button">Logout</button>
+      {/* <button onClick={handleLogout} className="logout-button">Logout</button> */}
       
-      <div className="form-section">
+      {/* <div className="form-section">
         <ExamForm subject={subject} onExamCreated={handleExamCreated} />
-      </div>
+      </div> */}
+
+      <button 
+        onClick={() => navigate('/create-exam')} // Navigate to create exam route
+        className="create-exam-button"
+      >
+        Create Exam
+      </button>
 
       <h3 className="exams-title">Exams</h3>
       {exams.length > 0 ? (
