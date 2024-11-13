@@ -18,6 +18,7 @@ import warnings
 import certifi
 import torch.cuda.amp as amp
 import bcrypt
+import json
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -28,6 +29,11 @@ mongo_uri = "mongodb+srv://admin:admin@cluster0.fv8uf.mongodb.net/?retryWrites=t
 client = MongoClient(mongo_uri,tlsCAFile=certifi.where())
 db = client['studentdata']
 collection = db['studetails']
+submissions_collection = db['submissions']  # New collection for submissions
+
+# Submission file paths
+SUBMISSIONS_CSV = 'submissions.csv'
+SUBMISSIONS_JSON = 'submissions.json'
 
 # Global variables
 images = {}  # To store the loaded face images
@@ -75,6 +81,24 @@ if not os.path.exists("candidates.csv"):
     candidates.to_csv('candidates.csv', index=False)
 else:
     candidates = pd.read_csv('candidates.csv')
+
+# Initialize submission files if they don't exist
+def init_submission_files():
+    # Initialize CSV file
+    if not os.path.exists(SUBMISSIONS_CSV):
+        with open(SUBMISSIONS_CSV, 'w', newline='') as csvfile:
+            fieldnames = ['examID', 'subject', 'title', 'date', 'username', 
+                         'answers', 'score', 'timestamp']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+    
+    # Initialize JSON file
+    if not os.path.exists(SUBMISSIONS_JSON):
+        with open(SUBMISSIONS_JSON, 'w') as jsonfile:
+            json.dump([], jsonfile)
+
+init_submission_files()
+
 
 # def make_encoding(username,known_face_encodings, file_path):
 #     images[username]=face_recognition.load_image_file(file_path)
@@ -363,6 +387,61 @@ def video_feed():
         print("hello")
 
         return jsonify({"msg": "User not logged in"}), 401  # Handle case where user is not logged in
+
+@app.route("/api/submit_answers", methods=["POST"])
+@jwt_required()
+def submit_answers():
+    try:
+        submission_data = request.get_json()
+        username = get_jwt_identity()
+        
+        # Validate submission data
+        required_fields = ['examID', 'subject', 'title', 'date', 'answers', 'score']
+        if not all(field in submission_data for field in required_fields):
+            return jsonify({"msg": "Missing required fields in submission"}), 400
+
+        # Create submission record
+        submission_record = {
+            'examID': submission_data['examID'],
+            'subject': submission_data['subject'],
+            'title': submission_data['title'],
+            'date': submission_data['date'],
+            'username': username,
+            'answers': submission_data['answers'],
+            'score': submission_data['score'],
+            'timestamp': datetime.now().isoformat()
+        }
+
+        # Save to MongoDB
+        submissions_collection.insert_one(submission_record)
+
+        # Save to CSV
+        with open(SUBMISSIONS_CSV, 'a', newline='') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=submission_record.keys())
+            writer.writerow(submission_record)
+
+        # Save to JSON
+        try:
+            with open(SUBMISSIONS_JSON, 'r+') as jsonfile:
+                submissions = json.load(jsonfile)
+                submissions.append(submission_record)
+                jsonfile.seek(0)
+                json.dump(submissions, jsonfile, indent=2)
+                jsonfile.truncate()
+        except json.JSONDecodeError:
+            # If JSON file is corrupted, start fresh
+            with open(SUBMISSIONS_JSON, 'w') as jsonfile:
+                json.dump([submission_record], jsonfile, indent=2)
+
+        return jsonify({
+            "msg": "Submission successful",
+            "submission_id": str(submission_record['examID'])
+        }), 200
+
+    except Exception as e:
+        print(f"Error occurred during submission: {e}")
+        return jsonify({"msg": f"An error occurred: {str(e)}"}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
