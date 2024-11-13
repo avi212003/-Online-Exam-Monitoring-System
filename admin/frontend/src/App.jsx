@@ -5,6 +5,7 @@ import AdminRegister from './components/AdminRegister';
 import AdminSignIn from './components/AdminSignIn';
 import AdminDashboard from './components/AdminDashboard';
 import ExamForm from './components/ExamForm';
+import AdminProfile from './components/AdminProfile';
 import Layout from './components/Layout';
 import { AuthProvider } from './context/AuthContext';
 import './styles/global.css';
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Navigate to="/register" />} />
             <Route path="/dashboard" element={<AdminDashboard />} />
             <Route path="/create-exam" element={<ExamForm />} />
+            <Route path="/profile" element={<AdminProfile />} />
           </Route>
 
           {/* Routes without NavigationBar */}

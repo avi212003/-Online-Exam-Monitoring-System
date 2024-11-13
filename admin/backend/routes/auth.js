@@ -22,7 +22,7 @@ const saveAdmins = (data) => {
 
 // Register Route
 router.post('/register', async (req, res) => {
-  const { username, password, subject, exams } = req.body;
+  const { username, password, subject, firstname, lastname, exams } = req.body;
 
   const adminsData = getAdmins();
 
@@ -35,7 +35,7 @@ router.post('/register', async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   const token = jwt.sign({ subject }, SECRET_KEY); // Permanent token
 
-  const newAdmin = { username, password: hashedPassword, subject, token, exams };
+  const newAdmin = { username, password: hashedPassword, subject, firstname, lastname, token, exams };
   adminsData.admins.push(newAdmin);
   saveAdmins(adminsData);
 
@@ -59,8 +59,15 @@ router.post('/signin', async (req, res) => {
     return res.status(400).json({ error: 'Invalid credentials' });
   }
 
-  // Return the stored token
-  res.json({ message: 'Sign-in successful', token: admin.token });
+  // Return the stored token and additional admin details
+  res.json({
+    message: 'Sign-in successful',
+    token: admin.token,
+    firstname: admin.firstname,
+    lastname: admin.lastname,
+    subject: admin.subject,
+    username: admin.username
+  });
 });
 
 module.exports = router;

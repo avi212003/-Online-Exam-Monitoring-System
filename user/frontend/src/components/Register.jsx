@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import '../styles/register.css'; // Ensure to import your CSS file
 
 const Register = () => {
+    // const [firstname, setFirstname] = useState('');
+    // const [lastname, setLastname] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -62,6 +64,8 @@ const Register = () => {
         formData.append('Username', username);
         formData.append('psw', password);
         formData.append('gender', gender);
+        // formData.append('Firstname', firstname);
+        // formData.append('Lastname', lastname);
         if (file) {
             formData.append('filename', file);
         }
@@ -102,6 +106,26 @@ const Register = () => {
                         
                         <form onSubmit={handleRegister} className="register_form" encType="multipart/form-data">
                         <div className="registerr">Register</div>
+                            {/* <input
+                                className="input_field"
+                                type="text"
+                                id="Firstname"
+                                name="Firstname"
+                                placeholder="First Name"
+                                value={firstname}
+                                onChange={(e) => setFirstname(e.target.value)}
+                                required
+                            /><br />
+                            <input
+                                className="input_field"
+                                type="text"
+                                id="Lastname"
+                                name="Lastname"
+                                placeholder="Last Name"
+                                value={lastname}
+                                onChange={(e) => setLastname(e.target.value)}
+                                required
+                            /><br /> */}
                             <input
                                 className="input_field"
                                 type="text"

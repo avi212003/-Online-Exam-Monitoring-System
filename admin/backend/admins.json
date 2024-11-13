@@ -354,66 +354,114 @@
               "error": ""
             }
           ]
-        },
-        {
-          "id": "1731266501335",
-          "title": "Test 11",
-          "date": "2024-11-17",
-          "questions": [
-            {
-              "question": "Test 11",
-              "options": [
-                "1",
-                "2",
-                "3",
-                "4"
-              ],
-              "answer": "1",
-              "error": ""
-            }
-          ]
-        },
-        {
-          "id": "1731271676443",
-          "title": "Test 12",
-          "date": "2024-11-18",
-          "questions": [
-            {
-              "question": "Test 12",
-              "options": [
-                "1",
-                "2",
-                "3",
-                "4"
-              ],
-              "answer": "1",
-              "error": ""
-            }
-          ]
         }
       ]
     },
     {
-      "username": "Rahil",
-      "password": "$2b$10$xkB1karjqHzhWQtmxu5a6uqpa4CLcdMsNsN3H93R1SeHcUggh4CGu",
+      "username": "rahil@gmail.com",
+      "password": "$2b$10$nvo7rpFqPU3ePMJechFq4umtKgLzeuHQkosTdaRK3FtPgCnD785T.",
       "subject": "History",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiSGlzdG9yeSIsImlhdCI6MTczMDg3Mjk0NX0.G1MkMdupaKUQRtdKl65sZC80kXxLP7w_-GuCj6A7JwA",
+      "firstname": "Rahil",
+      "lastname": "Shah",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiSGlzdG9yeSIsImlhdCI6MTczMTM2MDk1NX0.9NhPeGCMmh5lgQjuV0DD1UbCO3iWJAxZ7cXqFIz3PkU",
       "exams": [
         {
-          "id": "1730873044947",
+          "id": "1731361003736",
           "title": "Midterm 1",
-          "date": "2024-11-09",
+          "date": "2024-11-12",
           "subject": "History",
           "questions": [
             {
-              "question": "India independence?",
+              "question": "Questions",
               "options": [
-                "1945",
-                "1946",
-                "1947",
-                "1948"
+                "1",
+                "2",
+                "3",
+                "4"
               ],
-              "answer": "1947",
+              "answer": "1",
+              "error": ""
+            }
+          ]
+        },
+        {
+          "id": "1731361469574",
+          "title": "Midterm 2",
+          "date": "2024-11-11",
+          "subject": "History",
+          "questions": [
+            {
+              "question": "Question 1",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "answer": "1",
+              "error": ""
+            },
+            {
+              "question": "Question 2",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "answer": "1",
+              "error": ""
+            },
+            {
+              "question": "Question 3",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "answer": "1",
+              "error": ""
+            }
+          ]
+        },
+        {
+          "id": "1731361625990",
+          "title": "Midterm 3",
+          "date": "2024-11-12",
+          "subject": "History",
+          "questions": [
+            {
+              "question": "Q1",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "answer": "1",
+              "error": ""
+            },
+            {
+              "question": "Q2",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "answer": "1",
+              "error": ""
+            },
+            {
+              "question": "Q3",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "answer": "1",
               "error": ""
             }
           ]

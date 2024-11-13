@@ -6,7 +6,7 @@ import '../styles/AdminRegister.css';
 const subjects = ['Math', 'History', 'English', 'Software Engineering', 'Computer Networks'];
 
 const AdminRegister = () => {
-  const [formData, setFormData] = useState({ username: '', password: '', subject: '', exams: [] });
+  const [formData, setFormData] = useState({ username: '', password: '', subject: '', firstname: '', lastname: '', exams: [] });
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
@@ -33,6 +33,22 @@ const AdminRegister = () => {
     <div className="register-container container">
       <h2 className="register-title">Admin Registration</h2>
       <form onSubmit={handleSubmit} className="register-form">
+        <input
+          type="text"
+          name="firstname"
+          placeholder="First Name"
+          value={formData.firstname}
+          onChange={handleChange}
+          className="register-input"
+        />
+        <input
+          type="text"
+          name="lastname"
+          placeholder="Last Name"
+          value={formData.lastname}
+          onChange={handleChange}
+          className="register-input"
+        />
         <input
           type="text"
           name="username"

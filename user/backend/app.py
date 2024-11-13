@@ -273,6 +273,8 @@ def register():
         username = request.form.get("Username")
         password = request.form.get("psw")
         gender = request.form.get("gender")
+        # firstname = request.form.get("Firstname")
+        # lastname = request.form.get("Lastname")
         
         # Validation
         if not username or not password or not gender or not files:
@@ -315,6 +317,9 @@ def register():
             'username': username,
             'password': hashed_password.decode('utf-8'),
             'gender': gender,
+            # 'firstname': firstname,
+            # 'lastname': lastname,
+            # 'exams': []
             # 'face_encoding': face_encoding.tolist()  # Convert numpy array to list
         }
 
@@ -412,19 +417,30 @@ def submit_answers():
             'timestamp': datetime.now().isoformat()
         }
 
-        # Save to MongoDB
-        submissions_collection.insert_one(submission_record)
+        # Insert into MongoDB and retrieve the unique ObjectId
+        result = submissions_collection.insert_one(submission_record)
+        submission_record['_id'] = str(result.inserted_id)  # Convert to string for JSON compatibility
+        print("Submission _id: ", submission_record)
 
         # Save to CSV
+        csv_exists = os.path.isfile(SUBMISSIONS_CSV)
         with open(SUBMISSIONS_CSV, 'a', newline='') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=submission_record.keys())
+            
+            # Write header only if the file doesn't exist
+            if not csv_exists:
+                writer.writeheader()
+            
+            # Write the actual submission data
             writer.writerow(submission_record)
 
-        # Save to JSON
+        # Add `submission_record` to JSON (excluding MongoDB's ObjectId)
         try:
             with open(SUBMISSIONS_JSON, 'r+') as jsonfile:
                 submissions = json.load(jsonfile)
-                submissions.append(submission_record)
+                # Exclude `_id` field if present
+                submission_for_json = {k: v for k, v in submission_record.items()}
+                submissions.append(submission_for_json)
                 jsonfile.seek(0)
                 json.dump(submissions, jsonfile, indent=2)
                 jsonfile.truncate()
@@ -435,7 +451,7 @@ def submit_answers():
 
         return jsonify({
             "msg": "Submission successful",
-            "submission_id": str(submission_record['examID'])
+            "submission_id": submission_record['_id']
         }), 200
 
     except Exception as e:

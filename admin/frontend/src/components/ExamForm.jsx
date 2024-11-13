@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import api from '../config/axios.js';
 import { useAuth } from '../context/AuthContext';
 import '../styles/ExamForm.css';
 
-const ExamForm = ({ subject, onExamCreated }) => { // Receive subject as a prop
-  const { auth } = useAuth();
+const ExamForm = ({ onExamCreated }) => { // Receive subject as a prop
+  const { auth, subject } = useAuth();
   const navigate = useNavigate();
+  // const [subject, setSubject] = useState('');
   const [title, setTitle] = useState(''); // Exam title
   const [date, setDate] = useState(''); // Exam date
   const [questions, setQuestions] = useState([
     { question: '', options: ['', '', '', ''], answer: '', error: '' }
   ]);
+
+  // useEffect(() => {
+  //   const decodedToken = JSON.parse(atob(auth.split('.')[1]));
+  //   setSubject(decodedToken.subject);
+  // }, [auth]);
 
   const handleQuestionChange = (index, field, value) => {
     setQuestions((prevQuestions) => {
