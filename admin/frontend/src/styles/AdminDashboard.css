@@ -1,11 +1,12 @@
 /* src/styles/AdminDashboard.css */
-.dashboard-container {
+.admindashboard-container {
+  text-align: center;  
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-  text-align: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
 }
 
 .dashboard-title {
@@ -13,6 +14,10 @@
   font-weight: 600;
   color: #333;
   margin-bottom: 20px;
+}
+.subjectName{
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .form-section {
@@ -23,29 +28,42 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* .exams-title {
-  font-size: 22px;
-  font-weight: 500;
-  color: #555;
+.admindashboard-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.admincard {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 1070px;
+  height:150px;
+  margin-left: 15px;
+}
+
+.admincard h2 {
   margin-bottom: 15px;
+  font-size: 20px;
 }
 
-.exams-list {
-  list-style: none;
-  padding: 0;
+.admincard-button {
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.exam-item {
-  font-size: 18px;
-  color: #333;
-  padding: 10px 15px;
-  margin: 8px 0;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+.admincard-button:hover {
+  background-color: #357abd;
 }
-
-.exam-item:hover {
-  background-color: #f1f1f1;
-} */

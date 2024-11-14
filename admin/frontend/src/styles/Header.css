@@ -1,12 +1,32 @@
 .navbar-header {
     padding: 10px;
     text-align: center;
-    background-color: #343a40;
+    background-color: deepskyblue;
     color: #fff;
     /* height: 100%; */
+
+
+    display: flex;
+  align-items: center;
+  gap: 200px;
+  padding: 10px;
+  flex-wrap: wrap;
 }
+
 
 .navbar-username {
     font-size: 14px;
-    color: #ced4da;
+    color: white;
 }
+
+.image{
+    width: 150px;
+    height: 80px;
+}
+
+.navbar-text {
+    display: flex;
+    flex-direction: column; 
+    text-align: center; /* Vertically centers h1 and span */
+    gap: 10px; /* Space between h1 and span */
+  }

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { FaHome, FaUser, FaEnvelope, FaSignOutAlt } from 'react-icons/fa';
 import '../styles/NavigationBar.css';
 
 const NavigationBar = () => {
@@ -22,9 +23,12 @@ const NavigationBar = () => {
       </header> */}
       <nav className="navbar-sidebar">
         <ul>
-          <Link to="/dashboard"><li>Home</li></Link>
-          <Link to="/profile"><li>My Profile</li></Link>
-          <button onClick={handleLogout}><li>Logout</li></button>
+          <Link className="adminhome-button" to="/dashboard">
+          <FaHome size={20} style={{ marginRight: '8px' }} />Home</Link>
+          <Link className="adminmyProfile-button"to="/profile">
+          <FaUser style={{ marginRight: '8px' }} />My Profile</Link>
+          <button className="adminlogout-button" onClick={handleLogout}>
+          <FaSignOutAlt style={{ marginRight: '8px' }} />Logout</button>
         </ul>
       </nav>
     </div>

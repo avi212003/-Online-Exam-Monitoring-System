@@ -12,7 +12,7 @@
 
 .navbar-sidebar {
   flex-grow: 1;
-  background-color: aqua;
+  background-color: deepskyblue;
   /* height: 100vh; */
   /* padding-top: 20px; */
 }
@@ -29,7 +29,7 @@
 
 .navbar-sidebar a,
 .navbar-sidebar button {
-  color: #333;
+  color: white;
   text-decoration: none;
   display: block;
   width: 100%;
@@ -44,5 +44,17 @@
 
 .navbar-sidebar a:hover,
 .navbar-sidebar button:hover {
-  background-color: #e9ecef;
+  background-color: paleturquoise;
+}
+
+.adminhome-button, .adminmyProfile-button, .adminlogout-button  {
+  background-color: deepskyblue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }

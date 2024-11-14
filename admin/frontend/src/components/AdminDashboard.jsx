@@ -50,52 +50,23 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="admindashboard-container">
       <h2 className="dashboard-title">Admin Dashboard</h2>
-      <p>Subject: {subject}</p>
-      {/* <button onClick={handleLogout} className="logout-button">Logout</button> */}
-      
-      {/* <div className="form-section">
-        <ExamForm subject={subject} onExamCreated={handleExamCreated} />
-      </div> */}
-
-      <button 
-        onClick={() => navigate('/create-exam')} // Navigate to create exam route
-        className="create-exam-button"
-      >
-        Create New Exam
-      </button>
-
-      <button 
-        onClick={() => navigate('/view-scores')} // Navigate to create exam route
-        className="view-scores-button"
-      >
-        View Scores
-      </button>
-
-      <button onClick={() => navigate('/questions-log')} className="questions-log-button">
-        Log of Question Papers
-      </button>
-
-      {/* <h3 className="exams-title">Exams</h3>
-      {exams.length > 0 ? (
-        <ul className="exams-list">
-          {exams.map((exam) => (
-            <li 
-              key={exam.id} 
-              className="exam-item" 
-              onClick={() => handleExamClick(exam)}
-            >
-              {exam.title}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>You have not created any exam.</p>
-      )} */}
-
-      {/* Render ExamPopup when an exam is selected */}
-      {/* {selectedExam && <ExamPopup exam={selectedExam} onClose={closePopup} />} */}
+      <p className ="subjectName">Subject: {subject}</p>
+       <main className="admindashboard-main">
+        <section className="admincard">
+          <h2>To create exam please click on the below "Create New Exam" button.</h2>
+          <button className="admincard-button" onClick={() => navigate('/create-exam')} >Create New Exam</button>
+        </section>
+        <section className="admincard">
+          <h2>To view exam scores please click on the below "View Scores" button.</h2>
+          <button className="admincard-button" onClick={() => navigate('/view-scores')}>View Scores</button>
+        </section>
+        <section className="admincard">
+            <h2>To log off question paper please click on the below "Log Off Question Paper" button.</h2>
+            <button className="admincard-button" onClick={() => navigate('/questions-log')}>Log Off Question Paper</button>
+        </section>
+      </main>
     </div>
   );
 };
