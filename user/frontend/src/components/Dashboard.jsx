@@ -57,8 +57,8 @@ const Dashboard = () => {
                       examDate.getMonth() >= today.getMonth() &&
                       examDate.getFullYear() > today.getFullYear(); // Only future exams, excluding today
                 })
-                .sort((a, b) => new Date(a.date) - new Date(b.date))
-                .slice(0, 3); // Limit to 3 exams
+                .sort((a, b) => new Date(a.date) - new Date(b.date));
+                // .slice(0, 3); // Limit to 3 exams
 
             const past = exams.filter(exam => new Date(exam.date) < today);
   
@@ -156,20 +156,36 @@ const Dashboard = () => {
               ) : (
                   <p>No exams scheduled for today.</p>
               )}
-              
+
               <div className="upcoming_exams">
                   <h3>Upcoming Exams</h3>
-                  <ul>
-                      {upcomingExams.map((exam, index) => (
-                          <li key={index}>
-                              <p><strong>{exam.subject}</strong></p>
-                              <p>Title: {exam.title}</p>
-                              <p>Date: {new Date(exam.date).toLocaleDateString()}</p>
-                          </li>
-                      ))}
-                      {upcomingExams.length === 0 && <p>No upcoming exams.</p>}
-                  </ul>
-                </div>
+                  <div className="upcoming-exams-scrollable">
+                      <ul>
+                          {upcomingExams.map((exam, index) => (
+                              <li key={index}>
+                                  <p><strong>{exam.subject}</strong></p>
+                                  <p>Title: {exam.title}</p>
+                                  <p>Date: {new Date(exam.date).toLocaleDateString()}</p>
+                              </li>
+                          ))}
+                          {upcomingExams.length === 0 && <p>No upcoming exams.</p>}
+                      </ul>
+                  </div>
+              </div>
+              
+              {/* <div className="upcoming_exams">
+                <h3>Upcoming Exams</h3>
+                <ul>
+                    {upcomingExams.map((exam, index) => (
+                        <li key={index}>
+                            <p><strong>{exam.subject}</strong></p>
+                            <p>Title: {exam.title}</p>
+                            <p>Date: {new Date(exam.date).toLocaleDateString()}</p>
+                        </li>
+                    ))}
+                    {upcomingExams.length === 0 && <p>No upcoming exams.</p>}
+                </ul>
+              </div> */}
             </div>
           
             <div className="scores">

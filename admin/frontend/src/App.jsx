@@ -6,6 +6,8 @@ import AdminSignIn from './components/AdminSignIn';
 import AdminDashboard from './components/AdminDashboard';
 import ExamForm from './components/ExamForm';
 import AdminProfile from './components/AdminProfile';
+import QuestionsLog from './components/QuestionsLog';
+import ViewScores from './components/ViewScores';
 import Layout from './components/Layout';
 import { AuthProvider } from './context/AuthContext';
 import './styles/global.css';
@@ -21,6 +23,8 @@ function App() {
             <Route path="/dashboard" element={<AdminDashboard />} />
             <Route path="/create-exam" element={<ExamForm />} />
             <Route path="/profile" element={<AdminProfile />} />
+            <Route path="/questions-log" element={<QuestionsLog />} />
+            <Route path="/view-scores" element={<ViewScores />} />
           </Route>
 
           {/* Routes without NavigationBar */}
