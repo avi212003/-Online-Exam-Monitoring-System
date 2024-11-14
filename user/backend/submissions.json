@@ -102,5 +102,31 @@
     "score": 10,
     "timestamp": "2024-11-13T17:14:59.917391",
     "_id": "673524e377c92ee707184dbe"
+  },
+  {
+    "examID": "1731621756543",
+    "subject": "Math",
+    "title": "avi",
+    "date": "2024-11-15",
+    "username": "avi@gmail.com",
+    "answers": [
+      "aree"
+    ],
+    "score": 10,
+    "timestamp": "2024-11-14T17:02:55.409880",
+    "_id": "6736738fc832a7e98d42c999"
+  },
+  {
+    "examID": "1731621756543",
+    "subject": "Math",
+    "title": "avi",
+    "date": "2024-11-15",
+    "username": "avi@gmail.com",
+    "answers": [
+      "aree"
+    ],
+    "score": 10,
+    "timestamp": "2024-11-14T17:05:44.365703",
+    "_id": "67367438c832a7e98d42c99a"
   }
 ]

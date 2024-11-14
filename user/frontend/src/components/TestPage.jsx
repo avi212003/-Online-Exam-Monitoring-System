@@ -1,5 +1,3 @@
-// frontend/src/components/TestPage.jsx
-
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/testpage.css';
@@ -11,41 +9,15 @@ const TestPage = () => {
     const [welcomeMsg, setWelcomeMsg] = useState('');
     const [exam, setExam] = useState(null);
     const [selectedAnswers, setSelectedAnswers] = useState([]); // Initialize as array
-    const [errorMessage, setErrorMessage] = useState(''); // For error handling
-
-    // Define your questions and options
-    // const questions = [
-    //     {
-    //         id: 'question1',
-    //         text: '1) Which of the following is not the type of queue?',
-    //         options: [
-    //             'Priority queue',
-    //             'Single-ended queue',
-    //             'Circular queue',
-    //             'Ordinary queue'
-    //         ]
-    //     },
-    //     {
-    //         id: 'question2',
-    //         text: '2) Which of the following is a linear data structure?',
-    //         options: [
-    //             'Array',
-    //             'AVL Trees',
-    //             'Binary Trees',
-    //             'Graphs'
-    //         ]
-    //     },
-    //     // Add more questions as needed
-    // ];
+    const [errorMessage, setErrorMessage] = useState('');
+    const [showPopup, setShowPopup] = useState(false); // For error handling
 
     useEffect(() => {
         if (!isAuthenticated) {
             navigate('/signin');
         } else {
             const fetchedExam = JSON.parse(localStorage.getItem('currentExam'));
-            // Fetch welcome message from backend
-            console.log("Fetched Exam : ", fetchedExam);
-            if(fetchedExam){
+            if (fetchedExam) {
                 const fetchWelcomeMsg = async () => {
                     const token = localStorage.getItem('token');
                     try {
@@ -69,29 +41,36 @@ const TestPage = () => {
                 fetchWelcomeMsg();
                 setExam(fetchedExam);
             } else {
-                navigate('/dashboard'); // Redirect if no exam is loaded
+                navigate('/dashboard');
             }
         }
+
+        const handleBeforeUnload = (event) => {
+            event.preventDefault();
+            setShowPopup(true);
+            return '';
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
     }, [isAuthenticated, navigate]);
 
     const handleAnswerChange = (questionIndex, answer) => {
         const updatedAnswers = [...selectedAnswers];
-        updatedAnswers[questionIndex] = answer; // Update specific index
+        updatedAnswers[questionIndex] = answer;
         setSelectedAnswers(updatedAnswers);
-        setErrorMessage(''); // Clear any error message when an answer is selected
+        setErrorMessage('');
     };
 
     const handleSubmit = async () => {
-        console.log('Selected Answers: ', selectedAnswers)
-        // console.log("Exam: ", exam.questions);
-        console.log('Questions length: ', exam.questions.length)
-        // Check if all questions have been answered
         if (Object.keys(selectedAnswers).length !== exam.questions.length || selectedAnswers.includes(undefined)) {
             setErrorMessage('Please answer all questions before submitting.');
             return;
         }
 
-        // Calculate the score
         let score = 0;
         exam.questions.forEach((question, index) => {
             if (selectedAnswers[index] === question.answer) {
@@ -107,17 +86,9 @@ const TestPage = () => {
             date: exam.date,
             username: localStorage.getItem('username'),
             answers: selectedAnswers,
-            score, // Include the calculated score
+            score,
             timestamp: new Date().toISOString(),
         };
-
-        // {
-        //     username: localStorage.username,
-        //     timestamp,
-        //     answers: [answer1: "",],
-        // };
-
-        console.log('Submission Data: ', submissionData);
 
         try {
             const response = await fetch('/api/submit_answers', {
@@ -130,13 +101,22 @@ const TestPage = () => {
             });
 
             if (response.ok) {
-                navigate('/dashboard'); // Redirect on success
+                navigate('/dashboard');
             } else {
                 console.error('Failed to submit answers.');
             }
         } catch (error) {
             console.error('Error submitting answers:', error);
         }
+    };
+
+    const handleCancel = () => {
+        setShowPopup(false);
+    };
+
+    const handleContinue = () => {
+        setShowPopup(false);
+        window.location.reload();
     };
 
     return (
@@ -149,7 +129,6 @@ const TestPage = () => {
                                 <img src="/api/test" alt="Live Monitoring" className="video_image" />
                             </div>
                         </div>
-                        <div className="test_bottom_div"></div>
                     </div>
                     <div className="dash_row test_right">
                         <div className="dash_body">
@@ -174,16 +153,26 @@ const TestPage = () => {
                                     </div>
                                 ))}
                             </div>
-                            {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Display error message */}
+                            {errorMessage && <div className="error-message">{errorMessage}</div>}
                             <button className="test_submit_button" onClick={handleSubmit}>
                                 Submit
                             </button>
                         </div>
                     </div>
+                    {showPopup && (
+                        <div className="popup">
+                            <div className="popup-content">
+                                <h2>Warning!!</h2>
+                                <p>Are you sure you want to refresh the page? Unsaved changes may be lost.</p>
+                                <button onClick={handleContinue}>Continue</button>
+                                <button onClick={handleCancel}>Cancel</button>
+                            </div>
+                        </div>
+                    )}
                 </>
-                ) : (
-                    <p>Loading exam...</p>
-                )}
+            ) : (
+                <p>Loading exam...</p>
+            )}
         </div>
     );
 };
