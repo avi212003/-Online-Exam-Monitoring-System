@@ -14,13 +14,13 @@ git clone https://github.com/avi212003/-Online-Exam-Monitoring-System.git
 cd <path to the cloned repo>
 cd user\backend
 
-pip install virtualenv
-python -m venv Exam 
-exam\Scripts\Activate.ps1
+# pip install virtualenv
+# python -m venv Exam 
+# exam\Scripts\Activate.ps1
 
-pip install cmake
-pip install -r requirements.txt
+# pip install cmake
+# pip install -r requirements.txt
 
-python -m flask run
+# python -m flask run
 
 # for User side 
