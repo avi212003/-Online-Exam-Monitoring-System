@@ -142,7 +142,6 @@ def detect_faces_wc(known_face_encodings, known_face_names, frame):
 
 def generate_frames(model, known_face_encodings, known_face_names, username):
     camera = cv2.VideoCapture(0)
-    # candidates = pd.read_csv('candidates.csv')
     global index
 
     # Filter known encodings and names to only the logged-in user
@@ -151,11 +150,10 @@ def generate_frames(model, known_face_encodings, known_face_names, username):
         user_face_encoding = [known_face_encodings[user_index]]
         user_face_name = [username]
     else:
-        # If the username is not in known_face_names, treat as unknown
         user_face_encoding = []
         user_face_name = ["Unknown"]
 
-    # Check if detection files exist, if not, create them
+    # Ensure detection files exist, or create them
     if not os.path.exists('unknown_person_detection.csv'):
         with open('unknown_person_detection.csv', 'w', newline='') as csvfile:
             fieldnames = ['Timestamp', 'Username', 'Action']
@@ -187,7 +185,7 @@ def generate_frames(model, known_face_encodings, known_face_names, username):
                     color = (0, 255, 0)  # Green box for the logged-in user
                     cv2.rectangle(frame, (left, top), (right, bottom), color, 2)
                     cv2.putText(frame, name, (left + 6, bottom - 6), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 255), 2)
-                    unknown_person_detected = False  # Reset unknown detection if logged-in user is detected
+                    unknown_person_detected = False
                 else:
                     color = (0, 0, 255)  # Red box for unknown persons
                     cv2.rectangle(frame, (left, top), (right, bottom), color, 2)
@@ -211,9 +209,9 @@ def generate_frames(model, known_face_encodings, known_face_names, username):
                     device_detection_start_time = time.time()
                     device_detected = True
             else:
-                device_detected = False  # Reset detection state
+                device_detected = False
 
-            # Log unknown person detection if seen for over 5 seconds
+            # Log unknown person detection and save snapshot
             if unknown_person_detected and time.time() - unknown_person_detection_start_time > 5:
                 with open('unknown_person_detection.csv', 'a', newline='') as csvfile:
                     writer = csv.DictWriter(csvfile, fieldnames=['Timestamp', 'Username', 'Action'])
@@ -222,11 +220,16 @@ def generate_frames(model, known_face_encodings, known_face_names, username):
                         'Username': username if username else 'Unknown',
                         'Action': 'Unknown person detected for at least 5 seconds'
                     })
-                print("Unknown person detected for at least 5 seconds by:", username)
+                # Save snapshot
+                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+                snapshot_path = f"cheating_snapshot_{username}_{timestamp}.jpg"
+                cv2.imwrite(snapshot_path, frame)
+                print(f"Cheating snapshot saved: {snapshot_path}")
+                
                 unknown_person_detection_start_time = None
                 unknown_person_detected = False
 
-            # Log device detection if seen for over 2 seconds
+            # Log device detection and save snapshot
             if device_detected and time.time() - device_detection_start_time > 2:
                 with open('device_detection.csv', 'a', newline='') as csvfile:
                     writer = csv.DictWriter(csvfile, fieldnames=['Timestamp', 'Username', 'Action'])
@@ -235,7 +238,12 @@ def generate_frames(model, known_face_encodings, known_face_names, username):
                         'Username': username if username else 'Unknown',
                         'Action': 'Device detected for at least 2 seconds'
                     })
-                print("Device detected for at least 2 seconds by:", username)
+                # Save snapshot
+                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+                snapshot_path = f"cheating_snapshot_{username}_{timestamp}.jpg"
+                cv2.imwrite(snapshot_path, frame)
+                print(f"Cheating snapshot saved: {snapshot_path}")
+                
                 device_detection_start_time = None
                 device_detected = False
 
@@ -273,6 +281,8 @@ def register():
         username = request.form.get("Username")
         password = request.form.get("psw")
         gender = request.form.get("gender")
+        # firstname = request.form.get("Firstname")
+        # lastname = request.form.get("Lastname")
         
         # Validation
         if not username or not password or not gender or not files:
@@ -315,6 +325,9 @@ def register():
             'username': username,
             'password': hashed_password.decode('utf-8'),
             'gender': gender,
+            # 'firstname': firstname,
+            # 'lastname': lastname,
+            # 'exams': []
             # 'face_encoding': face_encoding.tolist()  # Convert numpy array to list
         }
 
@@ -412,19 +425,30 @@ def submit_answers():
             'timestamp': datetime.now().isoformat()
         }
 
-        # Save to MongoDB
-        submissions_collection.insert_one(submission_record)
+        # Insert into MongoDB and retrieve the unique ObjectId
+        result = submissions_collection.insert_one(submission_record)
+        submission_record['_id'] = str(result.inserted_id)  # Convert to string for JSON compatibility
+        print("Submission _id: ", submission_record)
 
         # Save to CSV
+        csv_exists = os.path.isfile(SUBMISSIONS_CSV)
         with open(SUBMISSIONS_CSV, 'a', newline='') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=submission_record.keys())
+            
+            # Write header only if the file doesn't exist
+            if not csv_exists:
+                writer.writeheader()
+            
+            # Write the actual submission data
             writer.writerow(submission_record)
 
-        # Save to JSON
+        # Add `submission_record` to JSON (excluding MongoDB's ObjectId)
         try:
             with open(SUBMISSIONS_JSON, 'r+') as jsonfile:
                 submissions = json.load(jsonfile)
-                submissions.append(submission_record)
+                # Exclude `_id` field if present
+                submission_for_json = {k: v for k, v in submission_record.items()}
+                submissions.append(submission_for_json)
                 jsonfile.seek(0)
                 json.dump(submissions, jsonfile, indent=2)
                 jsonfile.truncate()
@@ -435,7 +459,7 @@ def submit_answers():
 
         return jsonify({
             "msg": "Submission successful",
-            "submission_id": str(submission_record['examID'])
+            "submission_id": submission_record['_id']
         }), 200
 
     except Exception as e:

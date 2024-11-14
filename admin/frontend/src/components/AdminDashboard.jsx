@@ -63,10 +63,21 @@ const AdminDashboard = () => {
         onClick={() => navigate('/create-exam')} // Navigate to create exam route
         className="create-exam-button"
       >
-        Create Exam
+        Create New Exam
       </button>
 
-      <h3 className="exams-title">Exams</h3>
+      <button 
+        onClick={() => navigate('/view-scores')} // Navigate to create exam route
+        className="view-scores-button"
+      >
+        View Scores
+      </button>
+
+      <button onClick={() => navigate('/questions-log')} className="questions-log-button">
+        Log of Question Papers
+      </button>
+
+      {/* <h3 className="exams-title">Exams</h3>
       {exams.length > 0 ? (
         <ul className="exams-list">
           {exams.map((exam) => (
@@ -81,10 +92,10 @@ const AdminDashboard = () => {
         </ul>
       ) : (
         <p>You have not created any exam.</p>
-      )}
+      )} */}
 
       {/* Render ExamPopup when an exam is selected */}
-      {selectedExam && <ExamPopup exam={selectedExam} onClose={closePopup} />}
+      {/* {selectedExam && <ExamPopup exam={selectedExam} onClose={closePopup} />} */}
     </div>
   );
 };

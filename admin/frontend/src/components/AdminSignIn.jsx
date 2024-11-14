@@ -19,7 +19,8 @@ const AdminSignIn = () => {
     e.preventDefault();
     try {
       const response = await api.post('/api/auth/signin', formData);
-      login(response.data.token, formData.username);
+      const { token, firstname, lastname, subject, username } = response.data;
+      login(token, username, firstname, lastname, subject);
       navigate('/dashboard');
     } catch (error) {
       setError('Invalid credentials');

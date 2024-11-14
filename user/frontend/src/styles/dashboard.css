@@ -274,7 +274,7 @@
     color: black;
   }
   
-  .upcoming_exams ul {
+  /* .upcoming_exams ul {
     list-style: none;
   }
   
@@ -288,7 +288,29 @@
   .upcoming_exams li p {
     margin: 5px 0;
     color: #333;
-  }
+  } */
+
+.upcoming-exams-scrollable {
+  max-height: 350px; /* Adjust height as needed for the desired visible area */
+  overflow-y: auto;  /* Enable vertical scrolling */
+  padding-right: 10px; /* Optional: Adds padding for scroll bar */
+}
+
+.upcoming-exams-scrollable ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.upcoming-exams-scrollable li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.upcoming-exams-scrollable li p {
+  margin: 5px 0;
+  color: #333;
+}
   
  /* Responsive Design */
 @media (max-width: 1024px) {
