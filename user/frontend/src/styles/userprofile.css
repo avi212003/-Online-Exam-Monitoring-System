@@ -273,3 +273,28 @@
     width: 100%;
   }
 }
+
+@media (max-width: 1440px) {
+  .profile_header-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .profile_welcome-section h3 {
+    font-size: 18px;
+  }
+
+  .profile_sidebar {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .profile-card div, .cheat-incidents div, .exam-history div {
+    width: 100%;
+  }
+
+  .profile_container{
+    width: 183.5vh;
+  }
+}
