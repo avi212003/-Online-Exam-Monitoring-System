@@ -63,8 +63,8 @@ const AdminDashboard = () => {
           <button className="admincard-button" onClick={() => navigate('/view-scores')}>View Scores</button>
         </section>
         <section className="admincard">
-            <h2>To log off question paper please click on the below "Log Off Question Paper" button.</h2>
-            <button className="admincard-button" onClick={() => navigate('/questions-log')}>Log Off Question Paper</button>
+            <h2>To log off question paper please click on the below "Logs Of Question Paper" button.</h2>
+            <button className="admincard-button" onClick={() => navigate('/questions-log')}>Logs Of Question Paper</button>
         </section>
       </main>
     </div>
