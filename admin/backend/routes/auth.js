@@ -70,4 +70,48 @@ router.post('/signin', async (req, res) => {
   });
 });
 
+// Change Password Route
+router.post('/change-password', async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Unauthorized. Missing token.' });
+  }
+
+  const token = authHeader.split(' ')[1];
+
+  try {
+    // Verify the token
+    const decoded = jwt.verify(token, SECRET_KEY);
+    const { subject } = decoded;
+
+    const adminsData = getAdmins();
+
+    // Find the admin by subject
+    const admin = adminsData.admins.find(admin => admin.subject === subject);
+    if (!admin) {
+      return res.status(404).json({ error: 'Admin not found.' });
+    }
+
+    // Verify the current password
+    const isMatch = await bcrypt.compare(currentPassword, admin.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Current password is incorrect.' });
+    }
+
+    // Hash the new password
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the password in the admins.json file
+    admin.password = hashedNewPassword;
+    saveAdmins(adminsData);
+
+    res.json({ message: 'Password changed successfully.' });
+  } catch (error) {
+    console.error('Error in change-password route:', error);
+    res.status(500).json({ error: 'Internal server error.' });
+  }
+});
+
 module.exports = router;

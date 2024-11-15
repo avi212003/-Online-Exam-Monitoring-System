@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FaHome, FaUser, FaEnvelope, FaSignOutAlt, FaPaperPlane } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import '../style.css';
+import '../styles/AdminContactUS.css';
 
-function ContactUs() {
+function AdminContactUs() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ function ContactUs() {
 
   return (
     <div className="Contact_US_container">
-      <header className="Contact_US_header">
+      {/* <header className="Contact_US_header">
         <div className="Contact_US_header-content">
           <div className="Contact_US_app-title">
             <h2>Online Monitoring System</h2>
@@ -45,10 +45,10 @@ function ContactUs() {
             </h2>
           </div>
         </div>
-      </header>
+      </header> */}
 
       <div className="Contact_US_main">
-        <aside className="Contact_US_sidebar">
+        {/* <aside className="Contact_US_sidebar">
           <ul>
             <button className="home-button" onClick={() => navigate('/dashboard')}>
               <FaHome size={20} style={{ marginRight: '8px' }} />
@@ -67,7 +67,7 @@ function ContactUs() {
               Logout
             </button>
           </ul>
-        </aside>
+        </aside> */}
 
         <main className="Contact_US_main-content">
         <div className="contact_us_background">
@@ -91,7 +91,7 @@ function ContactUs() {
                 <span>CONTACT</span>
                 <span>US</span>
               </div>
-              <div className="contact_us_app-contact">CONTACT INFO : +62 81 314 928 595</div>
+              {/* <div className="contact_us_app-contact">CONTACT INFO : +62 81 314 928 595</div> */}
             </div>
             <div className="contact_us_screen-body-item">
               <div className="contact_us_app-form">
@@ -123,4 +123,4 @@ function ContactUs() {
   );
 }
 
-export default ContactUs;
+export default AdminContactUs;

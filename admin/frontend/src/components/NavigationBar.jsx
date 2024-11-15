@@ -27,7 +27,7 @@ const NavigationBar = () => {
           <FaHome size={20} style={{ marginRight: '8px' }} />Home</Link>
           <Link className="adminmyProfile-button"to="/profile">
           <FaUser style={{ marginRight: '8px' }} />My Profile</Link>
-          <Link className = "admincontact-button">
+          <Link className = "admincontact-button" to="/contact-us">
           <FaEnvelope style={{ marginRight: '8px' }} to= "/contactUs" />Contact Us</Link>
           <button className="adminlogout-button" onClick={handleLogout}>
           <FaSignOutAlt style={{ marginRight: '8px' }} />Logout</button>
