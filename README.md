@@ -11,8 +11,8 @@ Make a folder in your local computer where you want to save the files
 clone this by 
 git clone https://github.com/avi212003/-Online-Exam-Monitoring-System.git
 
-# cd <path to the cloned repo>
-# cd user\backend
+cd path to the cloned repo
+cd user\backend
 
 # pip install virtualenv
 # python -m venv Exam 
