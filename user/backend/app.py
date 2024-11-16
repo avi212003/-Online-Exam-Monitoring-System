@@ -28,8 +28,8 @@ jwt = JWTManager(app)
 mongo_uri = "mongodb+srv://admin:admin@cluster0.fv8uf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 client = MongoClient(mongo_uri,tlsCAFile=certifi.where())
 db = client['studentdata']
-collection = db['studetails']
-submissions_collection = db['submissions']  # New collection for submissions
+collection = db['student']
+submissions_collection = db['submissions']
 
 # Submission file paths
 SUBMISSIONS_CSV = 'submissions.csv'
@@ -281,8 +281,8 @@ def register():
         username = request.form.get("Username")
         password = request.form.get("psw")
         gender = request.form.get("gender")
-        # firstname = request.form.get("Firstname")
-        # lastname = request.form.get("Lastname")
+        firstname = request.form.get("Firstname")
+        lastname = request.form.get("Lastname")
         
         # Validation
         if not username or not password or not gender or not files:
@@ -325,9 +325,9 @@ def register():
             'username': username,
             'password': hashed_password.decode('utf-8'),
             'gender': gender,
-            # 'firstname': firstname,
-            # 'lastname': lastname,
-            # 'exams': []
+            'firstname': firstname,
+            'lastname': lastname,
+            'exams': []
             # 'face_encoding': face_encoding.tolist()  # Convert numpy array to list
         }
 
@@ -424,42 +424,26 @@ def submit_answers():
             'score': submission_data['score'],
             'timestamp': datetime.now().isoformat()
         }
+        print(submission_record)
 
-        # Insert into MongoDB and retrieve the unique ObjectId
-        result = submissions_collection.insert_one(submission_record)
-        submission_record['_id'] = str(result.inserted_id)  # Convert to string for JSON compatibility
-        print("Submission _id: ", submission_record)
+        user = collection.find_one({"username": username})
 
-        # Save to CSV
-        csv_exists = os.path.isfile(SUBMISSIONS_CSV)
-        with open(SUBMISSIONS_CSV, 'a', newline='') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=submission_record.keys())
+        if user:
+            # If user exists, add the submission to their submissions list
+            collection.update_one(
+                {"username": username},
+                {"$push": {"exams": submission_record}}  # Use $push to append to array
+                )
+            result = submissions_collection.insert_one(submission_record)
             
-            # Write header only if the file doesn't exist
-            if not csv_exists:
-                writer.writeheader()
-            
-            # Write the actual submission data
-            writer.writerow(submission_record)
-
-        # Add `submission_record` to JSON (excluding MongoDB's ObjectId)
-        try:
-            with open(SUBMISSIONS_JSON, 'r+') as jsonfile:
-                submissions = json.load(jsonfile)
-                # Exclude `_id` field if present
-                submission_for_json = {k: v for k, v in submission_record.items()}
-                submissions.append(submission_for_json)
-                jsonfile.seek(0)
-                json.dump(submissions, jsonfile, indent=2)
-                jsonfile.truncate()
-        except json.JSONDecodeError:
-            # If JSON file is corrupted, start fresh
-            with open(SUBMISSIONS_JSON, 'w') as jsonfile:
-                json.dump([submission_record], jsonfile, indent=2)
+        else:
+            print("else")
+            # If user is not found, return an error
+            return jsonify({"msg": "User not found"}), 404
 
         return jsonify({
             "msg": "Submission successful",
-            "submission_id": submission_record['_id']
+            # "submission_id": submission_record['_id']
         }), 200
 
     except Exception as e:
