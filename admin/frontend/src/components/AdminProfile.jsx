@@ -49,58 +49,71 @@ const AdminProfile = () => {
   
 
   return (
-    <div className="admin-profile">
-      <h2>Admin Profile</h2>
-      <div className="profile-details">
-        <p>
-          <strong>Name:</strong> {firstname} {lastname}
-        </p>
-        <p>
-          <strong>Email:</strong> {username}
-        </p>
-        <p>
-          <strong>Subject:</strong> {subject}
-        </p>
-      </div>
+    <div className="Admin_container">
+      <div className="Admin_main">
+        <main className="Admin_main-content">
+          <div className="Admin_profile">Admin Profile</div>
+           {/* Personal Information Section */}
+           <section className="Admin_card">
+             <div className="Admin_info-section">
+              <p>
+               <strong>Name:</strong> {firstname} {lastname}
+              </p>
+              <p>
+               <strong>Email:</strong> {username}
+              </p>
+              <p>
+               <strong>Subject:</strong> {subject}
+              </p>
+             </div>
+           </section>
 
-      <div className="change-password">
-        <h3>Change Password</h3>
-        <form onSubmit={handlePasswordChange}>
-          <div className="form-group">
-            <label htmlFor="current-password">Current Password:</label>
-            <input
-              type="password"
-              id="current-password"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="new-password">New Password:</label>
-            <input
-              type="password"
-              id="new-password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="confirm-password">Confirm New Password:</label>
-            <input
-              type="password"
-              id="confirm-password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className="btn">
-            Change Password
-          </button>
-        </form>
-        {message && <p className="message">{message}</p>}
+          {/* Change Password Section */}
+          <section className="change-password-container">
+            <div className="form-wrapper">
+              <div className="form-box">
+                <h3>Change Password</h3>
+                <form onSubmit={handlePasswordChange} className="form">
+                  <div className="form-group">
+                  <label htmlFor="current-password">Current Password:</label>
+                    <input
+                     type="password"
+                     id="current-password"
+                     placeholder="••••••••"
+                     value={currentPassword}
+                     onChange={(e) => setCurrentPassword(e.target.value)}
+                     required
+                   />
+                    <label htmlFor="newPassword">New Password</label>
+                    <input
+                      type="password"
+                      id="new-Password"
+                      placeholder="••••••••"
+                      required
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      placeholder="••••••••"
+                      required
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                  </div>
+                  <button type="submit" className="submit-btn">
+                   Change Password
+                  </button>
+               </form>
+               {message && <p className="message">{message}</p>}
+              </div>
+            </div>
+          </section>
+        </main>
       </div>
     </div>
   );
