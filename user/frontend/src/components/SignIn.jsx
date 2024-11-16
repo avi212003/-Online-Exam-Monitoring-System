@@ -1,15 +1,15 @@
-// frontend/src/components/SignIn.jsx
-
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/signin.css'; // Ensure to import your CSS file
 import { AuthContext } from '../contexts/AuthContext';
+import Loader from './Loader'; // Import the Loader component
 
 const SignIn = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [msg, setMsg] = useState('');
+    const [isLoading, setIsLoading] = useState(false); // Loader state
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
 
@@ -17,6 +17,9 @@ const SignIn = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault();
+        setIsLoading(true); // Show loader during sign-in process
+        setMsg(''); // Clear any previous messages
+
         try {
             const response = await fetch('/api/signin', {
                 method: 'POST',
@@ -25,9 +28,9 @@ const SignIn = () => {
                 },
                 body: JSON.stringify({ username, password }),
             });
-    
+
             const data = await response.json();
-    
+
             if (response.ok) {
                 setMsg(data.msg);
                 console.log(data);
@@ -42,8 +45,14 @@ const SignIn = () => {
         } catch (error) {
             console.error('Error:', error);
             setMsg('An error occurred. Please try again.');
+        } finally {
+            setIsLoading(false); // Hide loader after completion
         }
     };
+
+    if (isLoading) {
+        return <Loader />; // Display loader while signing in
+    }
 
     return (
         <div className="container">
@@ -51,9 +60,8 @@ const SignIn = () => {
                 <div className="content">
                     <img className="register_image" src="http://localhost:5000/static/assets/SignIn.png" alt="Sign In Illustration" />
                     <div className="card">
-                        
                         <form onSubmit={handleSignIn} className="register_form">
-                        <div className='signn' >Sign In</div>
+                            <div className="signn">Sign In</div>
                             <input
                                 className="input_field"
                                 type="text"
@@ -86,10 +94,9 @@ const SignIn = () => {
                             />
                             <h5 style={{ color: "black" }}>{msg}</h5>
                             <div className="register_link">
-                            Don't have an account? <Link to="/register" className="sign_up_instead">Register</Link>
-                        </div>
+                                Don't have an account? <Link to="/register" className="sign_up_instead">Register</Link>
+                            </div>
                         </form>
-                        
                     </div>
                 </div>
             </div>

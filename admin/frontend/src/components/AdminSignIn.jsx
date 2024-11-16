@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import api from '../config/axios';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/AdminSignIn.css';
+import Loader from './Loader'; // Import the Loader component
 
 const AdminSignIn = () => {
   const { login } = useAuth();
   const [formData, setFormData] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Loading state
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -17,6 +18,9 @@ const AdminSignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Show loader during form submission
+    setError(''); // Clear previous errors
+
     try {
       const response = await api.post('/api/auth/signin', formData);
       const { token, firstname, lastname, subject, username } = response.data;
@@ -24,8 +28,15 @@ const AdminSignIn = () => {
       navigate('/dashboard');
     } catch (error) {
       setError('Invalid credentials');
+    } finally {
+      setIsLoading(false); // Hide loader after submission
     }
   };
+
+  // Show the loader if `isLoading` is true
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="signin-container container">
