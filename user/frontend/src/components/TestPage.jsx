@@ -89,6 +89,7 @@ const TestPage = () => {
             score,
             timestamp: new Date().toISOString(),
         };
+        console.log(submissionData)
 
         try {
             const response = await fetch('/api/submit_answers', {
