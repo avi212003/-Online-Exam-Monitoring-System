@@ -4,49 +4,15 @@
   box-sizing: border-box;
 }
 
-.home-button, .myProfile-button, .contact-button, .logout-button  {
-  background-color: white;
-  color: deepskyblue;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.home-button:hover, .myProfile-button:hover, .contact-button:hover, .logout-button:hover {
-  background-color: #34495e;
-  width: 150px;
-}
-
 .Contact_US_container {
   font-family: 'Arial, sans-serif';
   background-color: #f4f6f8;
   min-height: 100vh;
-  width: 175vh;
+  width: 99.5%;;
   padding-right: 540px;
   overflow-y: auto;
 }
 
-/* Header Styling */
-.Contact_US_header {
-  width: 100%;
-  background-color: deepskyblue;
-  padding: 10px 20px;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-
-.Contact_US_header-content {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
 .Contact_US_profile{
   text-align: left;
   color: deepskyblue;
@@ -54,79 +20,17 @@
   font-size: 30px;
 }
 
-.Contact_US_logo {
-  height: 50px;
-  margin-right: 20px; /* Push the profile button to the right */
-  padding: 0;
-}
-
-.Contact_US_app-title{
-  font-size: 24px;
-  margin-right: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 /* Main Layout */
 .Contact_US_main {
   display: flex;
   width: 100%;
   height: calc(100vh - 70px);
-  margin-top: 30px;
   left: 0;
-}
-
-/* Sidebar Styling */
-.Contact_US_sidebar {
-  width: 150px;
-  background-color: white;
-  color: #fff;
-  min-height: calc(100vh - 70px);
-  position: sticky;
-}
-
-.Contact_US_sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.Contact_US_sidebar li {
-  padding: 15px 20px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.Contact_US_sidebar li:hover,
-.Contact_US_sidebar li.active {
-  background-color: #34495e;
-}
-
-.Contact_US_sidebar li.active {
-  background-color: #4169E1;
 }
 
 .Contact_US_main-content {
   flex: 1;
   padding: 0px 20px 20px 20px;
-}
-
-/* Welcome Section */
-.Contact_US_welcome-section {
-  display: flex;
-  align-items: center;
-}
-
-.Contact_US_student-image {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-right: 20px;
-}
-
-.Contact_US_welcome-section h2 {
-  font-size: 15px;
-  color: black;
 }
 
 /* Contact Us Page */
@@ -142,6 +46,7 @@
 
 .contact_us_container {
   flex: 0 1 700px;
+  width: 100%;
   margin: auto;
   padding: 10px;
 }
