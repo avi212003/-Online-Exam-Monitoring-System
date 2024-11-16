@@ -28,8 +28,8 @@ jwt = JWTManager(app)
 mongo_uri = "mongodb+srv://admin:admin@cluster0.fv8uf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 client = MongoClient(mongo_uri,tlsCAFile=certifi.where())
 db = client['studentdata']
-collection = db['studetails']
-submissions_collection = db['submissions']  # New collection for submissions
+collection = db['student']
+submissions_collection = db['submissions']
 
 # Submission file paths
 SUBMISSIONS_CSV = 'submissions.csv'
@@ -281,8 +281,8 @@ def register():
         username = request.form.get("Username")
         password = request.form.get("psw")
         gender = request.form.get("gender")
-        # firstname = request.form.get("Firstname")
-        # lastname = request.form.get("Lastname")
+        firstname = request.form.get("Firstname")
+        lastname = request.form.get("Lastname")
         
         # Validation
         if not username or not password or not gender or not files:
@@ -325,9 +325,9 @@ def register():
             'username': username,
             'password': hashed_password.decode('utf-8'),
             'gender': gender,
-            # 'firstname': firstname,
-            # 'lastname': lastname,
-            # 'exams': []
+            'firstname': firstname,
+            'lastname': lastname,
+            'exams': []
             # 'face_encoding': face_encoding.tolist()  # Convert numpy array to list
         }
 
@@ -434,6 +434,7 @@ def submit_answers():
                 {"username": username},
                 {"$push": {"exams": submission_record}}  # Use $push to append to array
                 )
+            result = submissions_collection.insert_one(submission_record)
             
         else:
             print("else")
