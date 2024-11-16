@@ -30,9 +30,10 @@ const SignIn = () => {
     
             if (response.ok) {
                 setMsg(data.msg);
+                console.log(data);
 
                 // 🔄 **Updated: Call login with token and username**
-                login(data.access_token, username); 
+                login(data.access_token, data.user); 
                 
                 navigate('/dashboard'); // Redirect to dashboard on successful sign-in
             } else {

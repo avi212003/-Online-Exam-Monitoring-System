@@ -6,7 +6,7 @@ import '../styles/userprofile.css';
 
 const UserProfile = () => {
   let navigate = useNavigate();
-  const { isAuthenticated, logout } = useContext(AuthContext);
+  const { isAuthenticated, logout, userDetails, username } = useContext(AuthContext);
   // Sample data for Exam History and Cheat Incidents
   const examData = [
     { id: 1, date: '2024-01-10', exam: 'Math', marks: 90, remarks: 'Excellent' },
@@ -41,7 +41,7 @@ const UserProfile = () => {
           </div>
           {<div className='profile_welcome-section'>
               <img className='student-image' src='http://localhost:5000/static/assets/student_image.png' alt="Student" />
-              <h2 id="profile_welcome-message">Welcome, {localStorage.getItem('username') || 'User'}!</h2>
+              <h2 id="profile_welcome-message">Welcome, {userDetails.firstname || 'User'}!</h2>
           </div>}
         </div>
       </header>
@@ -79,9 +79,9 @@ const UserProfile = () => {
         </div>
          <form className="form">
           <div className="info-section">
-           <p><strong>Full Name: Avi Chauhan</strong></p>
-           <p><strong>Email: {localStorage.getItem('username') || 'User'}</strong></p>
-           <p><strong>Date of birth: 12/07/2001</strong></p>
+           <p><strong>Full Name: {userDetails.firstname || Avi} {userDetails.lastname || Chauhan}</strong></p>
+           <p><strong>Email: {username || 'User'}</strong></p>
+           <p><strong>Gender: {userDetails.gender || 'Undisclosed'}</strong></p>
           </div>
          </form>
         </section>

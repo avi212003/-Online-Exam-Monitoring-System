@@ -10,7 +10,7 @@ import PastExamScores from './Scorechart'; // Adjust the path as necessary
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    const { isAuthenticated, logout } = useContext(AuthContext);
+    const { isAuthenticated, logout, userDetails } = useContext(AuthContext);
     const [exam, setExam] = useState(null);
     const [allExams, setAllExams] = useState(null);
     const [upcomingExams, setUpcomingExams] = useState([]);
@@ -107,7 +107,7 @@ const Dashboard = () => {
                 </div>
                 <div className="dashboard_welcome-section">
                     <img className="student-image" src="http://localhost:5000/static/assets/student_image.png" alt="Student" />
-                    <h2 id="welcome-message">Welcome, {localStorage.getItem('username') || 'User'}!</h2>
+                    <h2 id="welcome-message">Welcome, {userDetails.firstname || 'User'}!</h2>
                 </div>
             </div>
         </header>

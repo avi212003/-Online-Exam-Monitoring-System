@@ -361,8 +361,13 @@ def signin():
                 session['loggedin'] = True  # Optional: Store login state in session
                 session['username'] = username  # Store username in session
                 # session['id'] = int(user['id'].values[0])   # Store user id in session
+                # print("Username: ", user)
 
-                return jsonify({"msg": "Sign-in successful", "access_token": access_token}), 200
+                # Remove '_id' field from user
+                user.pop('_id', None)
+                user.pop('password', None)  # Remove password if it's included
+                
+                return jsonify({"msg": "Sign-in successful", "access_token": access_token, "user": user}), 200
             else:
                 return jsonify({"msg": "Invalid username or password"}), 401
         else:

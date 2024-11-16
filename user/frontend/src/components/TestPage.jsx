@@ -5,7 +5,7 @@ import { AuthContext } from '../contexts/AuthContext';
 
 const TestPage = () => {
     const navigate = useNavigate();
-    const { isAuthenticated, username } = useContext(AuthContext); // assuming username is available in AuthContext
+    const { isAuthenticated, username, userDetails } = useContext(AuthContext); // assuming username is available in AuthContext
     const [welcomeMsg, setWelcomeMsg] = useState('');
     const [exam, setExam] = useState(null);
     const [selectedAnswers, setSelectedAnswers] = useState([]); // Initialize as array
@@ -29,7 +29,7 @@ const TestPage = () => {
                         });
                         const data = await response.json();
                         if (response.ok) {
-                            setWelcomeMsg(data.msg);
+                            setWelcomeMsg(`Welcome to the test page, ${userDetails.firstname}`);
                         } else {
                             setWelcomeMsg(data.msg || 'Failed to fetch data.');
                         }
