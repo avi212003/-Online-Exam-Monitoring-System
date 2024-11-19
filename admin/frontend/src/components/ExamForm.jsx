@@ -98,7 +98,7 @@ const ExamForm = ({ onExamCreated }) => { // Receive subject as a prop
     };
 
     try {
-      const response = await api.post('/api/exams/createExam', examData, {
+      const response = await axios.post('http://localhost:5001/api/exams/createExam', examData, {
         headers: { Authorization: `Bearer ${auth}` }
       });
       console.log(response.data.message);

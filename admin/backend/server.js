@@ -1,10 +1,12 @@
 // server.js
 const express = require('express');
 const cors = require('cors');
+const { router: authRoutes, Admin } = require('./routes/auth');
 require('dotenv').config(); // Load environment variables from .env file
 
-const authRoutes = require('./routes/auth'); // Import auth routes
+// const authRoutes = require('./routes/auth'); // Import auth routes
 const createExamRoute = require('./routes/exams');
+const viewScores =require('./routes/scores')
 
 const app = express();
 
@@ -15,6 +17,7 @@ app.use(cors()); // Enable CORS for all routes
 // Routes
 app.use('/api/auth', authRoutes); // Use auth routes under /api/auth
 app.use('/api/exams', createExamRoute);
+app.use('/api/scores',viewScores)
 
 // Sample Route
 app.get('/', (req, res) => {

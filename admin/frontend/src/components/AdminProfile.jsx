@@ -27,13 +27,14 @@ const AdminProfile = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       );
   
       if (response.status === 200) {
-        setMessage('Password changed successfully!');
+        alert("Password Changed Successfully")
+        // setMessage('Password changed successfully!');
         setCurrentPassword('');
         setNewPassword('');
         setConfirmPassword('');
@@ -60,7 +61,7 @@ const AdminProfile = () => {
                <strong>Name:</strong> {firstname} {lastname}
               </p>
               <p>
-               <strong>Email:</strong> {username}
+               <strong>Username:</strong> {username}
               </p>
               <p>
                <strong>Subject:</strong> {subject}

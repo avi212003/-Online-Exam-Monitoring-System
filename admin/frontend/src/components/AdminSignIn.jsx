@@ -27,7 +27,7 @@ const AdminSignIn = () => {
       login(token, username, firstname, lastname, subject);
       navigate('/dashboard');
     } catch (error) {
-      setError('Invalid credentials');
+      alert('Invalid credentials');
     } finally {
       setIsLoading(false); // Hide loader after submission
     }

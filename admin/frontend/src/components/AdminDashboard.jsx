@@ -23,7 +23,7 @@ const AdminDashboard = () => {
 
   const fetchExams = async () => {
     try {
-      const response = await api.get('/api/exams/getExams', {
+      const response = await axiox.get('http://localhost:5001/api/exams/getExams', {
         headers: { Authorization: `Bearer ${auth}` }
       });
       setExams(response.data);
