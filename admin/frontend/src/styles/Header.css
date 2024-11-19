@@ -1,32 +1,27 @@
 .navbar-header {
-    padding: 10px;
-    text-align: center;
-    background-color: deepskyblue;
-    color: #fff;
-    /* height: 100%; */
-
-
-    display: flex;
-  align-items: center;
-  gap: 360px;
   padding: 10px;
-  flex-wrap: wrap;
+  background-color: deepskyblue;
+  color: #fff;
+  display: flex;
+  align-items: center; /* Vertically aligns items */
+  justify-content: space-between; /* Ensures proper spacing between image and text */
 }
 
-
-.navbar-username {
-    font-size: 14px;
-    color: white;
-}
-
-.image{
-    width: 150px;
-    height: 80px;
+.image {
+  width: 150px;
+  height: 80px;
+  margin-right: 20px; /* Adds space between image and text */
 }
 
 .navbar-text {
-    display: flex;
-    flex-direction: column; 
-    text-align: center; /* Vertically centers h1 and span */
-    gap: 10px; /* Space between h1 and span */
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Horizontally centers the text */
+  text-align: center; /* Centers text within the container */
+  flex-grow: 1; /* Allows text to take up the remaining space */
+}
+
+.navbar-username {
+  font-size: 14px;
+  color: white;
+}

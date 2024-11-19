@@ -4,14 +4,7 @@
   box-sizing: border-box;
 }
 
-.Contact_US_container {
-  font-family: 'Arial, sans-serif';
-  background-color: #f4f6f8;
-  min-height: 100vh;
-  width: 99.5%;;
-  padding-right: 540px;
-  overflow-y: auto;
-}
+
 
 .Contact_US_profile{
   text-align: left;
@@ -24,13 +17,12 @@
 .Contact_US_main {
   display: flex;
   width: 100%;
-  height: calc(100vh - 70px);
   left: 0;
 }
 
 .Contact_US_main-content {
   flex: 1;
-  padding: 0px 20px 20px 20px;
+  padding: 0px 20px 20px 0px;
 }
 
 /* Contact Us Page */
@@ -42,11 +34,15 @@
 
 .contact_us_background {
   display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 75vh; /* Ensure it takes up the full viewport height */
 }
 
 .contact_us_container {
   flex: 0 1 700px;
   width: 100%;
+  
   margin: auto;
   padding: 10px;
 }
@@ -202,65 +198,3 @@
   color: #34495e;
 }
 
-@media screen and (max-width: 520px) {
-  .contact_us_screen-body {
-    flex-direction: column;
-  }
-
-  .contact_us_screen-body-item.left {
-    margin-bottom: 30px;
-  }
-
-  .contact_us_app-title {
-    flex-direction: row;
-  }
-
-  .contact_us_app-title span {
-    margin-right: 12px;
-  }
-
-  .contact_us_app-title:after {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .screen-body {
-    padding: 40px;
-  }
-
-  .screen-body-item {
-    padding: 0;
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .Contact_US_main {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .Contact_US_sidebar {
-    width: 100%;
-    position: relative;
-    min-height: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .Contact_US_header-content {
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-  }
-
-  .Contact_US_welcome-section h3 {
-    font-size: 18px;
-  }
-
-  .Contact_US_sidebar {
-    display: flex;
-    justify-content: space-around;
-  }
-}

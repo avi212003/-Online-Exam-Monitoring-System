@@ -4,12 +4,12 @@
 }
 
 .header {
-    height: 15vh;
+    height: 11vh;
 }
 
 .layout-side-plus-main {
     display: flex;
-    height: 90vh;
+    height: 88vh;
 }
 
 .main-content {
