@@ -97,7 +97,7 @@ const UserProfile = () => {
           // setUpcomingExams(upcoming);
           setPastExams(sortedPastExams);
           // setCurrentExam(current);
-          setAllExams(exams);
+          // setAllExams(exams);
         } else {
           console.error('Failed to fetch exams');
         }
@@ -175,6 +175,7 @@ const UserProfile = () => {
           <table className="exam-table">
             <thead>
               <tr>
+                <th>Subject</th>
                 <th>Exam</th>
                 <th>Date</th>
                 <th>Score</th>
@@ -184,6 +185,7 @@ const UserProfile = () => {
             <tbody>
               {pastExams.map((exam) => (
                 <tr key={exam.id}>
+                  <td>{exam.subject}</td>
                   <td>{exam.title}</td>
                   <td>{exam.date}</td>
                   <td>{exam.score}</td>
