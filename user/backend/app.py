@@ -30,6 +30,7 @@ client = MongoClient(mongo_uri,tlsCAFile=certifi.where())
 db = client['studentdata']
 collection = db['student']
 submissions_collection = db['submissions']
+cheating_logs_collection = db['cheating_logs']
 
 # Submission file paths
 SUBMISSIONS_CSV = 'submissions.csv'
@@ -153,19 +154,6 @@ def generate_frames(model, known_face_encodings, known_face_names, username):
         user_face_encoding = []
         user_face_name = ["Unknown"]
 
-    # Ensure detection files exist, or create them
-    if not os.path.exists('unknown_person_detection.csv'):
-        with open('unknown_person_detection.csv', 'w', newline='') as csvfile:
-            fieldnames = ['Timestamp', 'Username', 'Action']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
-
-    if not os.path.exists('device_detection.csv'):
-        with open('device_detection.csv', 'w', newline='') as csvfile:
-            fieldnames = ['Timestamp', 'Username', 'Action']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
-
     last_detection_time = None
     submit_test = False
     unknown_person_detected = False
@@ -211,15 +199,13 @@ def generate_frames(model, known_face_encodings, known_face_names, username):
             else:
                 device_detected = False
 
-            # Log unknown person detection and save snapshot
+            # Log unknown person detection into MongoDB
             if unknown_person_detected and time.time() - unknown_person_detection_start_time > 5:
-                with open('unknown_person_detection.csv', 'a', newline='') as csvfile:
-                    writer = csv.DictWriter(csvfile, fieldnames=['Timestamp', 'Username', 'Action'])
-                    writer.writerow({
-                        'Timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                        'Username': username if username else 'Unknown',
-                        'Action': 'Unknown person detected for at least 5 seconds'
-                    })
+                cheating_logs_collection.insert_one({
+                    'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                    'username': username if username else 'Unknown',
+                    'action': 'Unknown person detected for at least 5 seconds'
+                })
                 # Save snapshot
                 timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
                 snapshot_path = f"cheating_snapshot_{username}_{timestamp}.jpg"
@@ -229,15 +215,13 @@ def generate_frames(model, known_face_encodings, known_face_names, username):
                 unknown_person_detection_start_time = None
                 unknown_person_detected = False
 
-            # Log device detection and save snapshot
+            # Log device detection into MongoDB
             if device_detected and time.time() - device_detection_start_time > 2:
-                with open('device_detection.csv', 'a', newline='') as csvfile:
-                    writer = csv.DictWriter(csvfile, fieldnames=['Timestamp', 'Username', 'Action'])
-                    writer.writerow({
-                        'Timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                        'Username': username if username else 'Unknown',
-                        'Action': 'Device detected for at least 2 seconds'
-                    })
+                cheating_logs_collection.insert_one({
+                    'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                    'username': username if username else 'Unknown',
+                    'action': 'Device detected for at least 2 seconds'
+                })
                 # Save snapshot
                 timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
                 snapshot_path = f"cheating_snapshot_{username}_{timestamp}.jpg"
@@ -257,7 +241,7 @@ def generate_frames(model, known_face_encodings, known_face_names, username):
     camera.release()
     cv2.destroyAllWindows()
 
-
+      
 
 
 # def get_next_index():
