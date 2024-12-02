@@ -66,6 +66,10 @@ const AdminDashboard = () => {
             <h2>To log off question paper please click on the below "Logs Of Question Paper" button.</h2>
             <button className="admincard-button" onClick={() => navigate('/questions-log')}>Logs Of Question Paper</button>
         </section>
+        <section className="admincard">
+            <h2>To see students who cheated click on the below "Cheat Logs" button.</h2>
+            <button className="admincard-button" onClick={() => navigate('/cheat-log')}>Cheat Logs</button>
+        </section>
       </main>
     </div>
   );

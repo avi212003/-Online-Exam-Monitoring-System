@@ -10,6 +10,7 @@ import AdminProfile from './components/AdminProfile';
 import QuestionsLog from './components/QuestionsLog';
 import ViewScores from './components/ViewScores';
 import Layout from './components/Layout';
+import CheatLog from './components/CheatLog';
 import { AuthProvider } from './context/AuthContext';
 import './styles/global.css';
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/contact-us" element={<AdminContactUs />} />
             <Route path="/questions-log" element={<QuestionsLog />} />
             <Route path="/view-scores" element={<ViewScores />} />
+            <Route path="/cheat-log" element={<CheatLog />} />
           </Route>
 
           {/* Routes without NavigationBar */}

@@ -25,6 +25,16 @@ const submissionSchema = new mongoose.Schema({
 // Create a Mongoose model
 const Submission = mongoose.model('Submission', submissionSchema);
 
+// Define the schema for cheating logs
+const cheatingLogSchema = new mongoose.Schema({
+    timestamp: String,
+    username: String,
+    action: String,
+}, { collection: 'cheating_logs' });
+
+// Create a Mongoose model for cheating logs
+const CheatingLog = mongoose.model('CheatingLog', cheatingLogSchema);
+
 // Route to fetch scores by subject
 router.get('/subject/:subject', async (req, res) => {
     const { subject } = req.params;
@@ -38,6 +48,18 @@ router.get('/subject/:subject', async (req, res) => {
         res.status(200).json(scores);
     } catch (err) {
         console.error('Error fetching scores:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Route to fetch cheating logs
+router.get('/cheating-logs', async (req, res) => {
+    try {
+        // Fetch all cheating logs
+        const logs = await CheatingLog.find();
+        res.status(200).json(logs);
+    } catch (err) {
+        console.error('Error fetching cheating logs:', err);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
