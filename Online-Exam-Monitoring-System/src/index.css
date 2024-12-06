@@ -6,6 +6,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  width: 100%;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -15,6 +16,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+div#root {
+  width: 100%;
 }
 
 a {
@@ -28,6 +33,7 @@ a:hover {
 
 body {
   margin: 0;
+  width: 100%;
   display: flex;
   place-items: center;
   min-width: 320px;

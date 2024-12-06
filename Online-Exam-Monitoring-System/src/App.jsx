@@ -1,16 +1,15 @@
 
-
-import { useState } from 'react'
-import SignIn from './pages/Signin'
-import './App.css'
+import React from 'react';
+import './App.css';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
   return (
-   <div className='App'>
-   <SignIn />
-   </div>
+    <div className="App">
+      <Dashboard name="User"/>
+    </div>
+  );
 
-  )
 }
 
-export default App
+export default App;
