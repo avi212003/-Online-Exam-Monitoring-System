@@ -1,11 +1,15 @@
-import React from 'react';
-import Register from './pages/Register/Register';
+
+
+import { useState } from 'react'
+import SignIn from './pages/Signin'
+import './App.css'
 
 function App() {
   return (
-    <div className="App">
-      <Register /> {/* Render the Register component */}
-    </div>
+   <div className='App'>
+   <SignIn />
+   </div>
+
   )
 }
 
