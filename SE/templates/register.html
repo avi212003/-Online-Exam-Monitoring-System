@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/register.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="register_right">
+            <div class="content">
+                <!-- Replace 'assets/register.png' with the correct path to your image -->
+                <img class="register_image" src="{{ url_for('static', filename='assets/register.png') }}" alt="Register Illustration">
+                <div class="card">
+                    <div class="header">Register</div>
+                    <form action="/" , method="post" class="register_form" , enctype="multipart/form-data">
+                        <input class="input_field" type="text" id="Username" name="Username" placeholder="Username" required><br>
+                        <input class="input_field" type="password" id="password" name="psw" placeholder="Password" required><br>
+                        <select class="input_field" id="gender_select" name="gender" placeholder="Gender">
+                            <option disabled selected value>Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select><br>
+                        <label class="label" for="image_file">Select Image</label><br>
+                        <input type="file" id="image_file" name="filename" style="display:none;" accept=".jpg, .png, .jpeg" required>
+                        <input class="submit_button" type="submit" value="Register"><br>
+                        <h5>{{msg}}</h5>
+                        <div class="register_link">Already have an Account? <a href="/login" class="black">Sign In</a></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript for form handling -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('register_form');
+      const imageFileInput = document.getElementById('image_file');
+      const imageLabel = document.querySelector('.label');
+
+      // Handle label click to trigger file input
+      imageLabel.addEventListener('click', () => {
+        imageFileInput.click();
+      });
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Retrieve form data
+        const formData = new FormData(form);
+
+        // Convert FormData to a plain object for logging
+        const data = {
+          username: formData.get('username'),
+          password: formData.get('password'),
+          gender: formData.get('gender'),
+          file: formData.get('file') ? formData.get('file').name : null
+        };
+
+        // For demonstration, log the form data to the console
+        console.log(data);
+
+        // TODO: Add your form submission logic here (e.g., send data to a server)
+      });
+    });
+    </script>
+</body>
+</html>
