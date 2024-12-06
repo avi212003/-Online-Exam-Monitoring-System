@@ -1,74 +1,101 @@
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
-const adminsData = require('../admins.json');
+const mongoose = require('mongoose');
+const Admin = require('../models/Admin'); // Import the Admin model from auth.js
+
+const SECRET_KEY = process.env.SECRET_KEY;
+
+// const Admin2 = mongoose.model('Admin', adminSchema, 'admindata');
+
 
 // Create Exam
-router.post('/createExam', (req, res) => {
+router.post('/createExam', async (req, res) => {
   const { title, date, subject, questions, id } = req.body;
   const token = req.headers.authorization.split(' ')[1]; // Extract token from header
 
-  // Read current admin data from JSON
-  const filePath = path.join(__dirname, '../admins.json');
-  const adminsData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  
-  // Find the admin by token
-  const admin = adminsData.admins.find(admin => admin.token === token);
-  if (!admin) return res.status(404).json({ error: 'Admin not found' });
+  try {
+    // Verify the token
+    const decoded = jwt.verify(token, SECRET_KEY);
+    const { subject: adminSubject } = decoded;
 
-  // Add exam data to the admin's exams
-  const exam = { id, title, date, subject, questions };
-  admin.exams.push(exam);
+    // Find the admin by subject
+    const admin = await Admin.findOne({ subject: adminSubject });
+    console.log(admin)
+    if (!admin) return res.status(404).json({ error: 'Admin not found' });
 
-  // Write updated data back to JSON file
-  fs.writeFileSync(filePath, JSON.stringify(adminsData, null, 2));
+    // Create a new exam
+    const newExam = { id, title, date, subject, questions };
+    console.log("newexamm:",newExam)
+    console.log(admin.exams)
+    admin.exams.push(newExam);
 
-  res.status(201).json({ message: 'Exam created successfully' });
+   
+    await admin.save();
+
+    res.status(201).json({ message: 'Exam created successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error creating exam' });
+  }
 });
 
-// Get Exams created by admin
-router.get('/getExams', (req, res) => {
+// Get Exams created by the current logged-in admin
+router.get('/getExams', async (req, res) => {
   const token = req.headers.authorization.split(' ')[1]; // Extract token from header
 
-  // Read current admin data from JSON
-  const filePath = path.join(__dirname, '../admins.json');
-  const adminsData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  try {
+    // Verify the token
+    const decoded = jwt.verify(token, SECRET_KEY);
+    const { subject: adminSubject } = decoded;
 
-  // Find the admin by token
-  const admin = adminsData.admins.find(admin => admin.token === token);
-  if (!admin) return res.status(404).json({ error: 'Admin not found' });
+    // Find the admin by subject
+    const admin = await Admin.findOne({ subject: adminSubject });
+    if (!admin) return res.status(404).json({ error: 'Admin not found' });
 
-  // Return only the exams for the found admin
-  if (admin.exams.length === 0) {
-    res.json({ message: 'You have not created any exam.' });
-  } else {
-    res.json(admin.exams);
+    // Return the exams of the found admin
+    if (admin.exams.length === 0) {
+      return res.json({ message: 'You have not created any exams.' });
+    } else {
+      return res.json(admin.exams);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error fetching exams' });
   }
 });
 
 // Get first exam from the first admin
-router.get('/get_first_exam', (req, res) => {
-  const firstAdmin = adminsData.admins[0];
-  if (firstAdmin && firstAdmin.exams.length > 0) {
-      res.json(firstAdmin.exams[0]); // Send the first exam of the first admin
-  } else {
-      res.status(404).json({ message: 'No exam found' });
+router.get('/get_first_exam', async (req, res) => {
+  try {
+    // Get the first admin in the database
+    const firstAdmin = await Admin.findOne().sort({ _id: 1 }); // Sort by _id to get the first admin created
+    if (firstAdmin && firstAdmin.exams.length > 0) {
+      return res.json(firstAdmin.exams[0]); // Send the first exam of the first admin
+    } else {
+      return res.status(404).json({ message: 'No exam found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error fetching first exam' });
   }
 });
 
-// Get All Exams created by all admins
-router.get('/get_all_exams', (req, res) => {
-  const filePath = path.join(__dirname, '../admins.json');
-  const adminsData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+// Get all exams created by all admins
+router.get('/get_all_exams', async (req, res) => {
+  try {
+    // Get all admins and their exams
+    const admins = await Admin.find({});
+    const allExams = admins.flatMap(admin => admin.exams);
 
-  // Collect all exams from each admin
-  const allExams = adminsData.admins.flatMap(admin => admin.exams);
-
-  if (allExams.length === 0) {
-    res.json({ message: 'No exams found.' });
-  } else {
-    res.json(allExams);
+    if (allExams.length === 0) {
+      return res.json({ message: 'No exams found.' });
+    } else {
+      return res.json(allExams);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error fetching exams from all admins' });
   }
 });
 
